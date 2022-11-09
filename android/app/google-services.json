@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "750432989515",
+    "project_id": "clear-water-and-sanitization",
+    "storage_bucket": "clear-water-and-sanitization.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:750432989515:android:8330c5d6052d9e7f1ff8ce",
+        "android_client_info": {
+          "package_name": "com.example.clear_water_and_sanitization"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "750432989515-615kr32ke152pmreregjskfkvtaq89nh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDlpHC4vU9OZhPt4S45Mpgl9gPD_xuW3pM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "750432989515-615kr32ke152pmreregjskfkvtaq89nh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
