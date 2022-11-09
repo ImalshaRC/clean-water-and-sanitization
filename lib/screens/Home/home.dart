@@ -1,3 +1,4 @@
+import 'package:clear_water_and_sanitization/screens/Home/BuyAProduct/categories.dart';
 import 'package:flutter/material.dart';
 import '../../services/auth.dart';
 import '../authentication/email_sign_in.dart';
@@ -24,10 +25,6 @@ class HexColor extends Color {
 
 class _HomeState extends State<Home> {
 
-
-
-  Color color1 = HexColor("b74093");
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +33,64 @@ class _HomeState extends State<Home> {
           backgroundColor: Colors.cyan,
           elevation: 0.0,
           title: const Text('Home'),
-        ),
+        ),      drawer: Drawer(
+      child: ListView(
+          padding: EdgeInsets.zero,
+          children:  [
+            DrawerHeader(
+                decoration: const BoxDecoration(
+                  color: Colors.cyan,
+                ),
+                child: Center(child: Wrap(
+                  children: <Widget>[
+                    Column(
+                      children:  const [
+                        Text('Full Name',style: TextStyle(color: Colors.white)),
+                        Text('Email',style: TextStyle(color: Colors.white))
+                      ],
+                    )
+                  ],
+                ))
+            ),
+            ListTile(
+              title:  const Text('Profile'),
+              onTap: (){
+                Navigator.pop(context);
+                // Navigator.push(context, MaterialPageRoute(builder: (_)=> const Profile()));
+              },
+            ),
+            ListTile(
+              title:  const Text('Buy A Product'),
+              onTap: (){
+                Navigator.pop(context);
+                Navigator.push(context, MaterialPageRoute(builder: (_)=> const Categories()));
+              },
+            ),
+            ListTile(
+              title:  const Text('Exit'),
+              onTap: (){
+                // Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title:  const Text('Logout'),
+              onTap: () async {
+                dynamic result = await _auth.signOut();
+                print(result);
+                Navigator.pop(context);
+                if(result=='Success'){
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('Successfully Signed Out'),
+                      ));
+                  Navigator.push(context, MaterialPageRoute(builder: (_)=> const EmailSignin()));
+                }
+
+              },
+            ),
+
+          ]
+      ),
+    ),
         body: Column(
           children: <Widget>[
             Padding(
