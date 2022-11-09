@@ -87,23 +87,7 @@ class RegistrationFromState extends State<RegisterFormWidget>{
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  TextFormField(
-                    controller: _firstName,
-                    decoration: const InputDecoration(
-                      hintText: 'What is your first name?',
-                      labelText: 'First Name *',
 
-                    ),
-                    validator: (value){
-                      if(value==null || value.isEmpty){
-                        return 'Enter Your First Name';
-                      }
-                      if(!value.isValidName()){
-                        return 'Name should not contain any numbers';
-                      }
-                      return null;
-                    },
-                  ),
                   TextFormField(
                     controller: _lastName,
                     decoration: const InputDecoration(
@@ -221,11 +205,11 @@ class RegistrationFromState extends State<RegisterFormWidget>{
 
                             }
                           },
-                          child: const Text('   Register   ',
-                            style: TextStyle(fontSize: 22),),
                           style: ElevatedButton.styleFrom(
                             primary: Colors.cyan
                         ),
+                          child: const Text('   Register   ',
+                            style: TextStyle(fontSize: 22),),
                         ),),
                     ],
                   )

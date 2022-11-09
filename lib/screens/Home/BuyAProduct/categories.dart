@@ -22,7 +22,9 @@ class Categories extends StatelessWidget {
                   Container(
                     margin: const EdgeInsets.only(bottom: 30.0),
                     child: ElevatedButton(
-                      onPressed: (){},
+                      onPressed: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (_)=> HandSanitizer()));
+                      },
                       child: const Text('Hand Sanitizers'),
                       style: ElevatedButton.styleFrom(
                           minimumSize: Size(300, 100),
@@ -37,7 +39,7 @@ class Categories extends StatelessWidget {
                     margin: const EdgeInsets.only(bottom: 30.0),
                     child: ElevatedButton(
                       onPressed: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (_)=> HandSanitizer()));
+
                       },
                       child: const Text('Hand Wash'),
                       style: ElevatedButton.styleFrom(

@@ -70,7 +70,7 @@ class UserSignInFromState extends State<UserSignInWidget>{
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Padding(padding: EdgeInsets.fromLTRB(0.0,50.0,0.0,30.0),
+                  const Padding(padding: EdgeInsets.fromLTRB(0.0,50.0,0.0,30.0),
                     child: Center(child: Text('Clean Water and Sanitation',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
@@ -80,7 +80,7 @@ class UserSignInFromState extends State<UserSignInWidget>{
                     ),
                     ),
                   ),
-                  Padding(padding: EdgeInsets.fromLTRB(0.0,0.0,0.0,30.0),
+                  const Padding(padding: EdgeInsets.fromLTRB(0.0,0.0,0.0,30.0),
                     child: Center(child: Text('Login',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
@@ -150,7 +150,7 @@ class UserSignInFromState extends State<UserSignInWidget>{
                                 Navigator.push(context, MaterialPageRoute(builder: (_)=> const Home()));
                               }else{
                                 ScaffoldMessenger.of(context).showSnackBar(
-                                    new SnackBar(content: new Text(result),
+                                    SnackBar(content: new Text(result),
                                     ));
                               }
                             }
