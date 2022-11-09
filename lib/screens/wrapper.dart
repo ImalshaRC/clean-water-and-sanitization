@@ -10,8 +10,8 @@ class Wrapper extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final FirebaseAuth auth = FirebaseAuth.instance;
-
     final user = auth.currentUser;
+
     print(user);
     if(user!=null){
       return const Home();

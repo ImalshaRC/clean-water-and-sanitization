@@ -60,7 +60,7 @@ class AuthService {
   }
 
   //Register with email and password
-  Future register(_firstName,_lastName,_age,_email,_password) async {
+  Future register(_firstName,_lastName,_age,_phoneNo,_address,_email,_password) async {
     try {
 
       UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
@@ -73,6 +73,8 @@ class AuthService {
         'firstName' : _firstName,
         'lastName' : _lastName,
         'age' : _age,
+        'phoneNo':_phoneNo,
+        'address':_address,
         'email' : _email,
       });
       return 'Success';

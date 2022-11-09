@@ -15,7 +15,9 @@ class Register extends StatelessWidget {
           elevation: 0.0,
           title: const Text('Register'),
         ),
-        body: const RegisterFormWidget()
+        body: const SingleChildScrollView(
+            child: RegisterFormWidget()
+        )
     );
   }
 }
@@ -46,11 +48,11 @@ class RegistrationFromState extends State<RegisterFormWidget>{
   final TextEditingController _firstName = TextEditingController();
   final TextEditingController _lastName = TextEditingController();
   final TextEditingController _age = TextEditingController();
+  final TextEditingController _phoneNo = TextEditingController();
+  final TextEditingController _adress = TextEditingController();
   final TextEditingController _email = TextEditingController();
   final TextEditingController _pass = TextEditingController();
   final TextEditingController _confirmPass = TextEditingController();
-
-  // late final String _firstName,_lastName,_age,_email,_pass,_confirmPass;
 
   @override
   Widget build(BuildContext context) {
@@ -87,6 +89,7 @@ class RegistrationFromState extends State<RegisterFormWidget>{
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
+
                   TextFormField(
                     controller: _firstName,
                     decoration: const InputDecoration(
@@ -134,6 +137,37 @@ class RegistrationFromState extends State<RegisterFormWidget>{
                       }
                       if(!value.isValidNumber()){
                         return 'Age should be a number';
+                      }
+                      return null;
+                    },
+                  ),
+                  TextFormField(
+                    controller: _phoneNo,
+                    decoration: const InputDecoration(
+                      hintText: 'What is your phone number?',
+                      labelText: 'Phone Number *',
+
+                    ),
+                    validator: (value){
+                      if(value==null || value.isEmpty){
+                        return 'Enter a number';
+                      }
+                      if(!value.isValidNumber()){
+                        return 'Phone Number should be a number';
+                      }
+                      return null;
+                    },
+                  ),
+                  TextFormField(
+                    controller: _adress,
+                    decoration: const InputDecoration(
+                      hintText: 'What is your address',
+                      labelText: 'Address *',
+
+                    ),
+                    validator: (value){
+                      if(value==null || value.isEmpty){
+                        return 'Enter Your Address';
                       }
                       return null;
                     },
@@ -203,7 +237,7 @@ class RegistrationFromState extends State<RegisterFormWidget>{
                               //   const SnackBar(content: Text('Processing Data')),
                               //
                               // );
-                              dynamic result = await _auth.register(_firstName.text,_lastName.text,_age.text,_email.text, _pass.text);
+                              dynamic result = await _auth.register(_firstName.text,_lastName.text,_age.text,_phoneNo.text,_adress.text,_email.text, _pass.text);
                               print(result);
                               if(result=='Success'){
                                 print('Successfully Created Account');
@@ -221,11 +255,11 @@ class RegistrationFromState extends State<RegisterFormWidget>{
 
                             }
                           },
-                          child: const Text('   Register   ',
-                            style: TextStyle(fontSize: 22),),
                           style: ElevatedButton.styleFrom(
                             primary: Colors.cyan
                         ),
+                          child: const Text('   Register   ',
+                            style: TextStyle(fontSize: 22),),
                         ),),
                     ],
                   )
