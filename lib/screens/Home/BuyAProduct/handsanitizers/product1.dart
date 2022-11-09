@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -20,10 +21,12 @@ class _ProductOneState extends State<ProductOne> {
 
   late SingleUser singleUser;
   late DocumentReference<Map<String, dynamic>> oneUser;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
 
   void getUserById(userId) async{
 
-    oneUser = FirebaseFirestore.instance.collection('userData').doc(userId);
+    oneUser = FirebaseFirestore.instance.collection('users').doc(userId);
 
     final DocumentSnapshot<Map<String, dynamic>> snapshot;
     snapshot = await oneUser.get();
@@ -120,7 +123,11 @@ class _ProductOneState extends State<ProductOne> {
               Padding(padding: const EdgeInsets.fromLTRB(0.0, 00.0, 0.0, 0.0),
                 child: ElevatedButton(
                   onPressed: () async {
-                    Navigator.push(context, MaterialPageRoute(builder: (_)=> Checkout(singleUser)));
+
+                    final userId =  _auth.currentUser?.uid;
+
+                    getUserById(userId);
+                    // Navigator.push(context, MaterialPageRoute(builder: (_)=> Checkout(singleUser)));
                   },
                   style: ElevatedButton.styleFrom(
                       primary: Colors.cyan
