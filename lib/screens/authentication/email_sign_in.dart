@@ -18,11 +18,12 @@ class _EmailSigninState extends State<EmailSignin> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
-        appBar: AppBar(
-          backgroundColor: Colors.cyan,
-          elevation: 0.0,
-          title: const Text('Sign In'),
-        ),
+        // appBar: AppBar(
+        //   automaticallyImplyLeading: false,
+        //   backgroundColor: Colors.cyan,
+        //   elevation: 0.0,
+        //   title: const Text('Sign In'),
+        // ),
         body: const UserSignInWidget()
     );
   }
@@ -69,7 +70,7 @@ class UserSignInFromState extends State<UserSignInWidget>{
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Padding(padding: EdgeInsets.fromLTRB(0.0,10.0,0.0,30.0),
+                  Padding(padding: EdgeInsets.fromLTRB(0.0,50.0,0.0,30.0),
                     child: Center(child: Text('Clean Water and Sanitation',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
