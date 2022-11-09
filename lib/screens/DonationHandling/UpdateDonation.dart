@@ -29,6 +29,7 @@ class _UpdateUserState extends State<UpdateDonation> {
 
   late WaterDonation donationData;
   late DocumentReference<Map<String, dynamic>> singleDonation;
+  final double textBorder = 20;
 
   @override
   Widget build(BuildContext context) {
@@ -47,35 +48,66 @@ class _UpdateUserState extends State<UpdateDonation> {
       body: ListView(
         padding: const EdgeInsets.all(16),
         children:  <Widget> [
+          const SizedBox(height: 40),
           TextField(
             controller: nameController,
-            decoration: const InputDecoration(hintText: 'Name', labelText: 'Enter Name'),
+            decoration: InputDecoration(
+              hintText: 'Name',
+              labelText: 'Enter Name',
+              border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(textBorder))),
+
+            ),
           ),
-          const SizedBox(height: 24),
+          const SizedBox(height: 20),
           TextField(
             controller: addressController,
-            decoration: const InputDecoration(hintText: 'Age', labelText: 'Enter Home Address'),
+            decoration: InputDecoration(
+              hintText: 'Age',
+              labelText: 'Enter Home Address',
+              border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(textBorder))),
+            ),
           ),
           const SizedBox(height: 24),
           TextField(
             controller: mobileController,
-            decoration: const InputDecoration(hintText: 'Birth Date', labelText: 'Enter Mobile Number'),
+            decoration: InputDecoration(
+              hintText: 'Birth Date',
+              labelText: 'Enter Mobile Number',
+              border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(textBorder))),
+            ),
             keyboardType: TextInputType.number,
           ),
           const SizedBox(height: 24),
           TextField(
             controller: literController,
-            decoration: const InputDecoration(hintText: 'Birth Date', labelText: 'Enter Number of Liters(L)'),
+            decoration: InputDecoration(
+              hintText: 'Birth Date',
+              labelText: 'Enter Number of Liters(L)',
+              border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(textBorder))),
+            ),
             keyboardType: TextInputType.number,
           ),
           const SizedBox(height: 24),
           TextField(
             controller: phiController,
-            decoration: const InputDecoration(hintText: 'Birth Date', labelText: 'Enter PHI Officer Mobile Number'),
+            decoration: InputDecoration(
+              hintText: 'Birth Date',
+              labelText: 'Enter PHI Officer Mobile Number',
+              border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(textBorder))),
+            ),
             keyboardType: TextInputType.number,
           ),
           const SizedBox(height: 24),
           ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              primary: Colors.blueAccent,
+              onPrimary: Colors.white,
+              shadowColor: Colors.blueAccent,
+              elevation: 3,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(25.0)),
+              minimumSize: const Size(50, 50),
+            ),
             onPressed: () {
               Navigator.pop(context);
               updateDonation(
@@ -86,18 +118,18 @@ class _UpdateUserState extends State<UpdateDonation> {
                   phi: phiController.text,
               );
             },
-            child: const Text('Update Donation'),
+            child: const Text('Update Donation', style: TextStyle(fontSize: 18)),
           ),
           const SizedBox(height: 24),
-          ElevatedButton(
-            onPressed: () {
-              showDialog(
-                  context: context,
-                  builder: (context) => alertBox(),
-              );
-            },
-            child: const Text('Delete Donation'),
-          ),
+          // ElevatedButton(
+          //   onPressed: () {
+          //     showDialog(
+          //         context: context,
+          //         builder: (context) => alertBox(),
+          //     );
+          //   },
+          //   child: const Text('Delete Donation'),
+          // ),
         ],
       ),
     );

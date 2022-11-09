@@ -55,30 +55,122 @@ class _UserListState extends State<DonationList> {
     );
   }
 
-  Widget buildUser(WaterDonation user) {
+  Widget buildUser(WaterDonation donation) {
 
-    var borderRadius = const BorderRadius.all(Radius.circular(25));
+    var borderRadius = const BorderRadius.all(Radius.circular(18));
+    const double ft = 19;
 
     return Column(
       children: [
         const SizedBox(height: 10),
         ListTile(
-        leading: Column(
-
-        ),
-        shape: RoundedRectangleBorder(borderRadius: borderRadius),
-        selectedTileColor: Colors.grey,
-        selected: true,
-        title: Text(user.name),
-        subtitle: Text(user.mobile),
-        onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(builder: (_) {
-        return UpdateDonation(user.id);
-        }));
-        },
+          shape: RoundedRectangleBorder(borderRadius: borderRadius),
+          selectedTileColor: Colors.grey,
+          selected: true,
+          title: Column(
+            children: [
+              Row(
+                children: [
+                  const SizedBox(height: 7),
+                  Text(
+                      donation.name,
+                      style: const TextStyle(color: Colors.white, fontSize: ft)
+                  ),
+                  const Spacer(),
+                  Text(
+                      donation.mobile,
+                      style: const TextStyle(color: Colors.white, fontSize: ft)
+                  ),
+                ],
+              ),
+              const SizedBox(height: 23),
+              Row(
+                children: [
+                  Text(
+                    'Date: ${donation.name}',
+                    style: const TextStyle(color: Colors.white, fontSize: ft)
+                  ),
+                ],
+              ),
+              const SizedBox(height: 7),
+              Row(
+                children: [
+                  ElevatedButton(
+                      onPressed: (){
+                        Navigator.of(context).push(MaterialPageRoute(builder: (_) {
+                          return UpdateDonation(donation.id);
+                        }));
+                      },
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0)
+                        ),
+                        backgroundColor: Colors.green
+                      ),
+                      child: const Text("Update")
+                  ),
+                  const Spacer(),
+                  ElevatedButton(
+                      onPressed: (){
+                        showDialog(
+                          context: context,
+                          builder: (context) => alertBox(donation.id),
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0)
+                        ),
+                        backgroundColor: Colors.green
+                      ),
+                      child: const Text("Delete")
+                  ),
+                ],
+              ),
+            ],
+          ),
+          onTap: () {
+            Navigator.of(context).push(MaterialPageRoute(builder: (_) {
+              return UpdateDonation(donation.id);
+            }));
+          },
         )
       ],
     );
+  }
+
+  alertBox<Widget>(String id) {
+    return AlertDialog(
+      title: const Text("Do you want to delete?"),
+      actions: [
+        ElevatedButton(
+            onPressed: (){
+              Navigator.pop(context);
+            },
+            child: const Text("No")
+        ),
+        ElevatedButton(
+            onPressed: (){
+              deleteUser(id);
+              Navigator.of(context).push(MaterialPageRoute(builder: (_){
+                return const DonationList();
+              }));
+            },
+            child: const Text("Yes")
+        )
+      ],
+    );
+  }
+
+  Future<dynamic> deleteUser(userId) async{
+    var singleDonation = FirebaseFirestore.instance.collection('waterDonation').doc(userId);
+    try{
+      await singleDonation.delete();
+    }catch(err){
+      if (kDebugMode) {
+        print(err.toString());
+      }
+    }
   }
 
   Stream<List<WaterDonation>> readDonations() => FirebaseFirestore.instance

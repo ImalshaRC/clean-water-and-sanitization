@@ -36,6 +36,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   firebase_auth: ^4.0.2
   getwidget: ^2.0.4
+  flutter_rating_bar: ^4.0.1
+  fluttertoast: ^8.1.1
 
 dev_dependencies:
   flutter_test:
@@ -64,6 +66,7 @@ flutter:
     - assets/CWaS.png
     - assets/Register.png
     - assets/donation1.png
+    - assets/rateus.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
