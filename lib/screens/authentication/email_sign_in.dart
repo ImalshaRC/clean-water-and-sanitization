@@ -19,6 +19,7 @@ class _EmailSigninState extends State<EmailSignin> {
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           backgroundColor: Colors.cyan,
           elevation: 0.0,
           title: const Text('Sign In'),
