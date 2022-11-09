@@ -1,4 +1,6 @@
 import 'package:clear_water_and_sanitization/models/WaterDonation.dart';
+import 'package:clear_water_and_sanitization/screens/DonationHandling/AddDonation.dart';
+import 'package:clear_water_and_sanitization/screens/DonationHandling/UpdateDonation.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -15,30 +17,25 @@ class _UserListState extends State<DonationList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("User List"),
+        title: const Text("Water Donation List"),
         actions: [
           IconButton(
               onPressed: () {
-                // Navigator.of(context).push(MaterialPageRoute(builder: (_){
-                //   return const CrudApp();
-                // }));
+                Navigator.of(context).push(MaterialPageRoute(builder: (_){
+                  return const AddDonation();
+                }));
               },
               icon: const Icon(Icons.add),
-          ),
-          IconButton(
-            onPressed: () {
-
-            },
-            icon: const Icon(Icons.qr_code),
-          ),
+          )
         ],
       ),
       body: StreamBuilder<List<WaterDonation>>(
-        stream: readUsers(),
+        stream: readDonations(),
         builder: (context, snapshot){
           if(snapshot.hasData){
             final users = snapshot.data!;
             return ListView(
+              padding: const EdgeInsets.symmetric(vertical: 30,horizontal: 20),
               children: users.map(buildUser).toList(),
             );
           }else if(snapshot.hasError){
@@ -58,21 +55,34 @@ class _UserListState extends State<DonationList> {
     );
   }
 
-  Widget buildUser(WaterDonation user) => ListTile(
-    leading: CircleAvatar(
-      child: Text('${user.age} Years'),
-    ),
-    title: Text(user.name),
-    subtitle: Text(user.birthday),
-    onTap: () {
-      // Navigator.of(context).push(MaterialPageRoute(builder: (_){
-      //   return UpdateUser(user.id);
-      // }));
-    },
-  );
+  Widget buildUser(WaterDonation user) {
 
-  Stream<List<WaterDonation>> readUsers() => FirebaseFirestore.instance
-      .collection('users')
+    var borderRadius = const BorderRadius.all(Radius.circular(25));
+
+    return Column(
+      children: [
+        const SizedBox(height: 10),
+        ListTile(
+        leading: Column(
+
+        ),
+        shape: RoundedRectangleBorder(borderRadius: borderRadius),
+        selectedTileColor: Colors.grey,
+        selected: true,
+        title: Text(user.name),
+        subtitle: Text(user.mobile),
+        onTap: () {
+        Navigator.of(context).push(MaterialPageRoute(builder: (_) {
+        return UpdateDonation(user.id);
+        }));
+        },
+        )
+      ],
+    );
+  }
+
+  Stream<List<WaterDonation>> readDonations() => FirebaseFirestore.instance
+      .collection('waterDonation')
       .snapshots()
       .map((snapshot) =>
           snapshot.docs.map((doc) =>

@@ -1,3 +1,4 @@
+import 'package:clear_water_and_sanitization/screens/DonationHandling/MainPage.dart';
 import 'package:clear_water_and_sanitization/screens/Home/BuyAProduct/categories.dart';
 import 'package:flutter/material.dart';
 import '../../services/auth.dart';
@@ -95,27 +96,37 @@ class _HomeState extends State<Home> {
           children: <Widget>[
             Padding(
               padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
-              child: Center(
-                child: ElevatedButton(
-                  onPressed: () async {
-                    dynamic result = await _auth.signOut();
-                    print(result);
-                    if(result=='Success'){
-                      ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Successfully Signed Out'),
-                          ));
-                      Navigator.push(context, MaterialPageRoute(builder: (_)=> const EmailSignin()));
-                    }else{
-                      ScaffoldMessenger.of(context).showSnackBar(
-                          new SnackBar(content: new Text(result),
-                          ));
-                    }
+              child: Column(
+                children: [
+                  Center(
+                    child: ElevatedButton(
+                      onPressed: () async {
+                        dynamic result = await _auth.signOut();
+                        print(result);
+                        if(result=='Success'){
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(content: Text('Successfully Signed Out'),
+                              ));
+                          Navigator.push(context, MaterialPageRoute(builder: (_)=> const EmailSignin()));
+                        }else{
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              new SnackBar(content: new Text(result),
+                              ));
+                        }
 
 
-                  },
-                  child: const Text('Sign Out'),
-                ),
+                      },
+                      child: const Text('Sign Out'),
+                    ),
+                  )
+                ],
               )
+            ),
+            ElevatedButton(
+                onPressed: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (_)=> const MainPage()));
+                },
+                child: const Text('Donation handling'),
             )
           ],
         )
