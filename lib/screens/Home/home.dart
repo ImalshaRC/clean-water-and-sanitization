@@ -3,6 +3,7 @@ import 'package:clear_water_and_sanitization/screens/Awareness/ArticlesFeedback.
 import 'package:clear_water_and_sanitization/screens/Awareness/ArticlesList.dart';
 import 'package:clear_water_and_sanitization/screens/DonationHandling/MainPage.dart';
 import 'package:clear_water_and_sanitization/screens/Home/BuyAProduct/categories.dart';
+import 'package:clear_water_and_sanitization/screens/Home/BuyAProduct/orderlist.dart';
 import 'package:flutter/material.dart';
 import '../../services/auth.dart';
 import '../authentication/email_sign_in.dart';
@@ -90,6 +91,13 @@ class _HomeState extends State<Home> {
               onTap: (){
                 Navigator.pop(context);
                 Navigator.push(context, MaterialPageRoute(builder: (_)=> const Categories()));
+              },
+            ),
+            ListTile(
+              title:  const Text('Orders'),
+              onTap: (){
+                Navigator.pop(context);
+                Navigator.push(context, MaterialPageRoute(builder: (_)=> const OrderList()));
               },
             ),
             ListTile(
