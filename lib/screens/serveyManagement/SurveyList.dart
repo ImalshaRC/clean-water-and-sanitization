@@ -1,50 +1,38 @@
-import 'package:clear_water_and_sanitization/models/Order.dart';
-import 'package:clear_water_and_sanitization/screens/Home/BuyAProduct/categories.dart';
-import 'package:clear_water_and_sanitization/screens/Home/BuyAProduct/trackorder.dart';
-import 'package:clear_water_and_sanitization/screens/Home/home.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:clear_water_and_sanitization/models/SurveyFModel.dart';
+import 'package:clear_water_and_sanitization/models/WaterDonation.dart';
+import 'package:clear_water_and_sanitization/screens/DonationHandling/AddDonation.dart';
+import 'package:clear_water_and_sanitization/screens/DonationHandling/UpdateDonation.dart';
+import 'package:clear_water_and_sanitization/screens/serveyManagement/AddSurvey.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../../DonationHandling/UpdateDonation.dart';
-
-class OrderList extends StatefulWidget {
-  const OrderList({Key? key}) : super(key: key);
+class SurveyList extends StatefulWidget {
+  const SurveyList({Key? key}) : super(key: key);
 
   @override
-  State<OrderList> createState() => _OrderListState();
+  State<SurveyList> createState() => _UserListState();
 }
 
-class _OrderListState extends State<OrderList> {
+class _UserListState extends State<SurveyList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
-        appBar: AppBar(
-        backgroundColor: Colors.cyan,
-        elevation: 0.0,
-        title: const Text('Order List'),
-          actions: [
-            IconButton(
+      appBar: AppBar(
+        title: const Text("Survey List"),
+        actions: [
+          IconButton(
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(builder: (_){
-                  return const Categories();
+                  return const AddSurvey();
                 }));
               },
               icon: const Icon(Icons.add),
-            ),
-            IconButton(
-              onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (_){
-                  return const Home();
-                }));
-              },
-              icon: const Icon(Icons.home),
-            ),
-          ],
-        ),
-      body: StreamBuilder<List<Orders>>(
-        stream: readDonations(),
+          )
+        ],
+      ),
+      body: StreamBuilder<List<SurveyFModel>>(
+        // stream: readSurvey(),
         builder: (context, snapshot){
           if(snapshot.hasData){
             final users = snapshot.data!;
@@ -69,7 +57,7 @@ class _OrderListState extends State<OrderList> {
     );
   }
 
-  Widget buildUser(Orders order) {
+  Widget buildUser(SurveyFModel Survey) {
 
     var borderRadius = const BorderRadius.all(Radius.circular(18));
     const double ft = 19;
@@ -79,7 +67,7 @@ class _OrderListState extends State<OrderList> {
         const SizedBox(height: 10),
         ListTile(
           shape: RoundedRectangleBorder(borderRadius: borderRadius),
-          selectedTileColor: Colors.blueAccent,
+          selectedTileColor: Colors.grey,
           selected: true,
           title: Column(
             children: [
@@ -87,41 +75,47 @@ class _OrderListState extends State<OrderList> {
                 children: [
                   const SizedBox(height: 7),
                   Text(
-                      order.productName,
+                      Survey.province,
                       style: const TextStyle(color: Colors.white, fontSize: ft)
                   ),
                   const Spacer(),
                   Text(
-                      order.state,
+                      Survey.district,
                       style: const TextStyle(color: Colors.white, fontSize: ft)
                   ),
                 ],
               ),
-              const SizedBox(height: 23),
-              Row(
-                children: [
-                  Text(
-                      'Total Price: Rs.${order.totalPrice}.00',
-                      style: const TextStyle(color: Colors.white, fontSize: ft)
-                  ),
-                ],
-              ),
+
               const SizedBox(height: 7),
               Row(
                 children: [
+                  ElevatedButton(
+                      onPressed: (){
+                        Navigator.of(context).push(MaterialPageRoute(builder: (_) {
+                          return UpdateDonation(Survey.id);
+                        }));
+                      },
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0)
+                        ),
+                        backgroundColor: Colors.green
+                      ),
+                      child: const Text("Update")
+                  ),
                   const Spacer(),
                   ElevatedButton(
                       onPressed: (){
                         showDialog(
                           context: context,
-                          builder: (context) => alertBox(order.id),
+                          builder: (context) => alertBox(Survey.id),
                         );
                       },
                       style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0)
-                          ),
-                          backgroundColor: Colors.red
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0)
+                        ),
+                        backgroundColor: Colors.green
                       ),
                       child: const Text("Delete")
                   ),
@@ -131,7 +125,7 @@ class _OrderListState extends State<OrderList> {
           ),
           onTap: () {
             Navigator.of(context).push(MaterialPageRoute(builder: (_) {
-              return TrackOrder(order.id);
+              return UpdateDonation(Survey.id);
             }));
           },
         )
@@ -153,7 +147,7 @@ class _OrderListState extends State<OrderList> {
             onPressed: (){
               deleteUser(id);
               Navigator.of(context).push(MaterialPageRoute(builder: (_){
-                return const OrderList();
+                return const SurveyList();
               }));
             },
             child: const Text("Yes")
@@ -162,10 +156,10 @@ class _OrderListState extends State<OrderList> {
     );
   }
 
-  Future<dynamic> deleteUser(userId) async{
-    var singleOrder = FirebaseFirestore.instance.collection('orders').doc(userId);
+  Future<dynamic> deleteUser(Id) async{
+    var singleDonation = FirebaseFirestore.instance.collection('docSurvey').doc(Id);
     try{
-      await singleOrder.delete();
+      await singleDonation.delete();
     }catch(err){
       if (kDebugMode) {
         print(err.toString());
@@ -173,12 +167,12 @@ class _OrderListState extends State<OrderList> {
     }
   }
 
-  Stream<List<Orders>> readDonations() => FirebaseFirestore.instance
-      .collection('orders')
+  Stream<List<WaterDonation>> readSurvey() => FirebaseFirestore.instance
+      .collection('docSurvey')
       .snapshots()
       .map((snapshot) =>
-      snapshot.docs.map((doc) =>
-          Orders.fromJson(doc.data()),
-      ).toList(),
-  );
+          snapshot.docs.map((doc) =>
+              WaterDonation.fromJson(doc.data()),
+          ).toList(),
+      );
 }
