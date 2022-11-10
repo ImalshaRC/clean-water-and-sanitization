@@ -1,5 +1,6 @@
 import 'package:clear_water_and_sanitization/screens/DonationHandling/MainPage.dart';
 import 'package:clear_water_and_sanitization/screens/Home/BuyAProduct/categories.dart';
+import 'package:clear_water_and_sanitization/screens/serveyManagement/AddSurvey.dart';
 import 'package:flutter/material.dart';
 import '../../services/auth.dart';
 import '../authentication/email_sign_in.dart';
@@ -65,6 +66,12 @@ class _HomeState extends State<Home> {
               onTap: (){
                 Navigator.pop(context);
                 Navigator.push(context, MaterialPageRoute(builder: (_)=> const Categories()));
+              },
+            ),
+            ListTile(
+              title:  const Text('Servery'),
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (_)=> const AddSurvey()));
               },
             ),
             ListTile(
