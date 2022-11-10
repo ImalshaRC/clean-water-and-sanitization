@@ -55,10 +55,11 @@ class _HomeState extends State<Home> {
           actions: [
             PopupMenuButton(
               itemBuilder: (ctx) => [
-                _buildPopupMenuItem('Search'),
-                _buildPopupMenuItem('Upload'),
-                _buildPopupMenuItem('Copy'),
-                _buildPopupMenuItem('Exit'),
+                _buildPopupMenuItem('Add Article'),
+                _buildPopupMenuItem('Add Session'),
+                _buildPopupMenuItem('Add Feedback'),
+                _buildPopupMenuItem('Session List'),
+                _buildPopupMenuItem('Article List'),
               ],
             )
           ],
@@ -66,7 +67,7 @@ class _HomeState extends State<Home> {
         ),
         drawer: Drawer(
       child: ListView(
-          padding: EdgeInsets.fromLTRB(0.0, 30.0, 0.0, 0.0),
+          padding: EdgeInsets.fromLTRB(0.0, 100.0, 0.0, 0.0),
           children:  [
             // DrawerHeader(
             //     decoration: const BoxDecoration(
