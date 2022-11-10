@@ -1,6 +1,7 @@
 import 'package:clear_water_and_sanitization/models/Order.dart';
 import 'package:clear_water_and_sanitization/screens/Home/BuyAProduct/categories.dart';
 import 'package:clear_water_and_sanitization/screens/Home/BuyAProduct/trackorder.dart';
+import 'package:clear_water_and_sanitization/screens/Home/home.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +32,15 @@ class _OrderListState extends State<OrderList> {
                 }));
               },
               icon: const Icon(Icons.add),
-            )
+            ),
+            IconButton(
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(builder: (_){
+                  return const Home();
+                }));
+              },
+              icon: const Icon(Icons.home),
+            ),
           ],
         ),
       body: StreamBuilder<List<Orders>>(
