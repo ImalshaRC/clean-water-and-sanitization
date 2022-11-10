@@ -1,15 +1,10 @@
-
-import 'package:clear_water_and_sanitization/screens/Articles/AddArticles.dart';
-import 'package:clear_water_and_sanitization/screens/Articles/ArticlesFeedback.dart';
-import 'package:clear_water_and_sanitization/screens/Articles/ArticlesList.dart';
-import 'package:clear_water_and_sanitization/screens/Awareness/AddAwareness.dart';
-import 'package:clear_water_and_sanitization/screens/Awareness/AwarenessList.dart';
-
+import 'package:clear_water_and_sanitization/screens/Awareness/AddArticles.dart';
+import 'package:clear_water_and_sanitization/screens/Awareness/ArticlesFeedback.dart';
+import 'package:clear_water_and_sanitization/screens/Awareness/ArticlesList.dart';
 import 'package:clear_water_and_sanitization/screens/DonationHandling/AddDonation.dart';
 import 'package:clear_water_and_sanitization/screens/DonationHandling/DonationChart.dart';
 import 'package:clear_water_and_sanitization/screens/DonationHandling/DonationList.dart';
 import 'package:clear_water_and_sanitization/screens/DonationHandling/FeedbackList.dart';
-
 import 'package:clear_water_and_sanitization/screens/DonationHandling/MainPage.dart';
 import 'package:clear_water_and_sanitization/screens/Home/BuyAProduct/categories.dart';
 import 'package:clear_water_and_sanitization/screens/Home/BuyAProduct/orderlist.dart';
@@ -220,17 +215,10 @@ class _HomeState extends State<Home> {
             ),
             ElevatedButton(
               onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (_)=> const AddAwareness()));
+                Navigator.push(context, MaterialPageRoute(builder: (_)=> const ArticlesFeedback()));
               },
-              child: const Text('Add Awareness'),
-            ),
-            ElevatedButton(
-              onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (_)=> const AwarenessList()));
-              },
-              child: const Text('Awareness List'),
+              child: const Text('articles feedback'),
             )
-
           ],
         )
     );

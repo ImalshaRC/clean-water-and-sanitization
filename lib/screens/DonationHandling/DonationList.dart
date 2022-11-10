@@ -1,6 +1,7 @@
 import 'package:clear_water_and_sanitization/models/WaterDonation.dart';
 import 'package:clear_water_and_sanitization/screens/DonationHandling/AddDonation.dart';
 import 'package:clear_water_and_sanitization/screens/DonationHandling/UpdateDonation.dart';
+import 'package:clear_water_and_sanitization/screens/Home/home.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -20,6 +21,14 @@ class _UserListState extends State<DonationList> {
         backgroundColor: Colors.cyan,
         title: const Text("Water Donation List"),
         actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (_){
+                return const Home();
+              }));
+            },
+            icon: const Icon(Icons.home),
+          ),
           IconButton(
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(builder: (_){

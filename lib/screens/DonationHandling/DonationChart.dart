@@ -1,5 +1,7 @@
+import 'package:clear_water_and_sanitization/screens/Home/home.dart';
 import 'package:flutter/material.dart';
 import 'package:pie_chart/pie_chart.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class DonationChart extends StatefulWidget {
   const DonationChart({Key? key}) : super(key: key);
@@ -10,9 +12,11 @@ class DonationChart extends StatefulWidget {
 
 class _DonationChartState extends State<DonationChart> {
 
+  static int waterAmount = 0;
+
   Map<String, double> dataMap = {
     "Dry Food": 5,
-    "Water": 7,
+    "Water": 6,
     "Money": 2
   };
 
@@ -20,7 +24,18 @@ class _DonationChartState extends State<DonationChart> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.cyan,
         title: const Text('Donation Pie Chart'),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (_){
+                return const Home();
+              }));
+            },
+            icon: const Icon(Icons.home),
+          )
+        ],
       ),
       body: ListView(
         children: [
@@ -64,4 +79,19 @@ class _DonationChartState extends State<DonationChart> {
       )
     );
   }
+
+  @override
+  void initState() {
+    redData();
+    super.initState();
+  }
+
+  redData() async{
+    final int documents = await FirebaseFirestore.instance.collection('waterDonation').snapshots().length;
+    print(documents);
+    setState(() {
+      waterAmount = documents;
+    });
+  }
+
 }
