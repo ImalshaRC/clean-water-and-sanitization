@@ -1,6 +1,6 @@
-import 'package:clear_water_and_sanitization/screens/Awareness/AddArticles.dart';
-import 'package:clear_water_and_sanitization/screens/Awareness/ArticlesFeedback.dart';
-import 'package:clear_water_and_sanitization/screens/Awareness/ArticlesList.dart';
+import 'package:clear_water_and_sanitization/screens/Articles/AddArticles.dart';
+import 'package:clear_water_and_sanitization/screens/Articles/ArticlesFeedback.dart';
+import 'package:clear_water_and_sanitization/screens/Articles/ArticlesList.dart';
 import 'package:clear_water_and_sanitization/screens/DonationHandling/AddDonation.dart';
 import 'package:clear_water_and_sanitization/screens/DonationHandling/DonationChart.dart';
 import 'package:clear_water_and_sanitization/screens/DonationHandling/DonationList.dart';
