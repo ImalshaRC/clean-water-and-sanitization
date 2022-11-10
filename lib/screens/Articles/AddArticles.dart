@@ -1,5 +1,6 @@
 import 'package:clear_water_and_sanitization/models/ArticleModel.dart';
-import 'package:clear_water_and_sanitization/screens/Awareness/ArticlesFeed.dart';
+import 'package:clear_water_and_sanitization/screens/Articles/ArticlesFeed.dart';
+import 'package:clear_water_and_sanitization/screens/Articles/ArticlesList.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -28,54 +29,65 @@ class _CrudAppState extends State<AddArticle> {
       body: ListView(
         padding: const EdgeInsets.all(16),
         children:  <Widget> [
+          Center(child: Text("Create an Article")),
           const SizedBox(height: 40),
+          Text("Article Heading"),
+          const SizedBox(height: 10),
           TextField(
             controller: nameController,
             decoration: InputDecoration(
-              hintText: 'Name',
-              labelText: 'Enter Name',
+              hintText: '',
+              labelText: 'Enter Article Heading',
               border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(textBorder))),
 
             ),
           ),
           const SizedBox(height: 20),
+          Text("Article Description"),
+          const SizedBox(height: 10),
           TextField(
             controller: addressController,
             decoration: InputDecoration(
-              hintText: 'Age',
-              labelText: 'Enter Home Address',
+              hintText: '',
+              labelText: 'Enter Description',
               border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(textBorder))),
             ),
           ),
           const SizedBox(height: 24),
+          Text("Date"),
+          const SizedBox(height: 10),
           TextField(
             controller: mobileController,
             decoration: InputDecoration(
-              hintText: 'Birth Date',
-              labelText: 'Enter Mobile Number',
+              hintText: '',
+              labelText: 'Enter Date',
               border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(textBorder))),
             ),
             keyboardType: TextInputType.number,
           ),
           const SizedBox(height: 24),
+          Text("Time"),
+          const SizedBox(height: 10),
           TextField(
             controller: literController,
             decoration: InputDecoration(
-              hintText: 'Birth Date',
-              labelText: 'Enter Number of Liters(L)',
+              hintText: '',
+              labelText: 'Enter Time',
               border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(textBorder))),
             ),
             keyboardType: TextInputType.number,
           ),
           const SizedBox(height: 24),
+          Text("Author's Name"),
+          const SizedBox(height: 10),
           TextField(
             controller: phiController,
             decoration: InputDecoration(
-              hintText: 'Birth Date',
-              labelText: 'Enter PHI Officer Mobile Number',
+              hintText: '',
+              labelText: 'Enter Author Name',
               border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(textBorder))),
             ),
-            keyboardType: TextInputType.number,
+            keyboardType: TextInputType.text,
           ),
           const SizedBox(height: 24),
               ElevatedButton(
@@ -90,7 +102,7 @@ class _CrudAppState extends State<AddArticle> {
               ),
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(builder: (_){
-                  return const ArticlesFeed();
+                  return const ArticleList();
                 }));
                 createDonation(
                   name: nameController.text,
@@ -100,7 +112,7 @@ class _CrudAppState extends State<AddArticle> {
                   phi: phiController.text,
                 );
               },
-              child: const Text('Add Article', style: TextStyle(fontSize: 18)),
+              child: const Text('Publish Article', style: TextStyle(fontSize: 18)),
           )
         ],
       ),

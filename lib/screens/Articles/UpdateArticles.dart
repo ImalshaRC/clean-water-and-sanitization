@@ -49,12 +49,13 @@ class _UpdateUserState extends State<UpdateArticle> {
       body: ListView(
         padding: const EdgeInsets.all(16),
         children:  <Widget> [
+          Center(child: Text("Update This Article")),
           const SizedBox(height: 40),
           TextField(
             controller: nameController,
             decoration: InputDecoration(
-              hintText: 'Name',
-              labelText: 'Enter Name',
+              hintText: '',
+              labelText: 'Article Heading',
               border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(textBorder))),
 
             ),
@@ -63,8 +64,8 @@ class _UpdateUserState extends State<UpdateArticle> {
           TextField(
             controller: addressController,
             decoration: InputDecoration(
-              hintText: 'Age',
-              labelText: 'Enter Home Address',
+              hintText: '',
+              labelText: 'Article Description',
               border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(textBorder))),
             ),
           ),
@@ -72,8 +73,8 @@ class _UpdateUserState extends State<UpdateArticle> {
           TextField(
             controller: mobileController,
             decoration: InputDecoration(
-              hintText: 'Birth Date',
-              labelText: 'Enter Mobile Number',
+              hintText: '',
+              labelText: 'Published Date',
               border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(textBorder))),
             ),
             keyboardType: TextInputType.number,
@@ -82,8 +83,8 @@ class _UpdateUserState extends State<UpdateArticle> {
           TextField(
             controller: literController,
             decoration: InputDecoration(
-              hintText: 'Birth Date',
-              labelText: 'Enter Number of Liters(L)',
+              hintText: '',
+              labelText: 'Published Time',
               border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(textBorder))),
             ),
             keyboardType: TextInputType.number,
@@ -92,11 +93,11 @@ class _UpdateUserState extends State<UpdateArticle> {
           TextField(
             controller: phiController,
             decoration: InputDecoration(
-              hintText: 'Birth Date',
-              labelText: 'Enter PHI Officer Mobile Number',
+              hintText: '',
+              labelText: 'Author Name',
               border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(textBorder))),
             ),
-            keyboardType: TextInputType.number,
+            keyboardType: TextInputType.text,
           ),
           const SizedBox(height: 24),
           ElevatedButton(
@@ -119,7 +120,7 @@ class _UpdateUserState extends State<UpdateArticle> {
                   phi: phiController.text,
               );
             },
-            child: const Text('Update Donation', style: TextStyle(fontSize: 18)),
+            child: const Text('Update Article', style: TextStyle(fontSize: 18)),
           ),
           const SizedBox(height: 24),
           // ElevatedButton(

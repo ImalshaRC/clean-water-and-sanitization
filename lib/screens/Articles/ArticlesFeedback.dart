@@ -1,6 +1,6 @@
 import 'package:clear_water_and_sanitization/models/ArticleFModel.dart';
 import 'package:clear_water_and_sanitization/models/DonationFModel.dart';
-import 'package:clear_water_and_sanitization/screens/Awareness/ArticlesFeed.dart';
+import 'package:clear_water_and_sanitization/screens/Articles/ArticlesFeed.dart';
 import 'package:clear_water_and_sanitization/screens/DonationHandling/FeedbackList.dart';
 import 'package:clear_water_and_sanitization/screens/DonationHandling/MainPage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -25,12 +25,12 @@ class _DonationFeedbackState extends State<ArticlesFeedback> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Donation Feedback'),
+        title: const Text('Article Feedback'),
       ),
       body: ListView(
         children:  [
           const Image(
-            height: 40,
+            height: 90,
             image: AssetImage(
                 'assets/rateus.png'
             ),
@@ -40,7 +40,7 @@ class _DonationFeedbackState extends State<ArticlesFeedback> {
             children: [
               const Text('Rate Our App', style: TextStyle(fontSize: 25, fontWeight: FontWeight.w700)),
               const SizedBox(height: 15),
-              const Text('sscdcdccssdcs\nscddcsdcscdscsd\nsdcsdcsdcsdcs\nssdcsdcsdcsdc', style: TextStyle(fontSize: 15),),
+              const Text('Please be kind to give your\nvaluable feedback,because\nit will help us to improve\nour app!', style: TextStyle(fontSize: 15),),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                 child: Column(
@@ -48,22 +48,22 @@ class _DonationFeedbackState extends State<ArticlesFeedback> {
                     TextField(
                       controller: nameController,
                       decoration: const InputDecoration(
-                        hintText: 'Birth Date',
-                        labelText: 'Enter Number of Liters(L)',
+                        hintText: 'Name',
+                        labelText: 'Enter Your Name',
                       ),
-                      keyboardType: TextInputType.number,
+                      keyboardType: TextInputType.text,
                     ),
-                    const SizedBox(height: 15),
+                    const SizedBox(height: 20),
                     TextField(
                       controller: feedbackController,
                       maxLines: 3, //or null
-                      decoration: const InputDecoration.collapsed(hintText: "Enter your text here"),
+                      decoration: const InputDecoration.collapsed(hintText: "Enter your Feedback Here"),
                     ),
                     TextField(
                       controller: dateController,
                       decoration: const InputDecoration(
-                        hintText: 'Birth Date',
-                        labelText: 'Enter Number of Liters(L)',
+                        hintText: '',
+                        labelText: 'Feedback Date',
                       ),
                       keyboardType: TextInputType.number,
                     ),
@@ -84,7 +84,7 @@ class _DonationFeedbackState extends State<ArticlesFeedback> {
                 onPressed: () {
                   createDFeedback();
                 },
-                child: const Text('Add Feedback', style: TextStyle(fontSize: 18)),
+                child: const Text('Send Feedback', style: TextStyle(fontSize: 18)),
               )
             ],
           )

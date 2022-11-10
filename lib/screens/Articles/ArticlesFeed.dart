@@ -1,7 +1,7 @@
 
 import 'package:clear_water_and_sanitization/models/ArticleFModel.dart';
 import 'package:clear_water_and_sanitization/models/WaterDonation.dart';
-import 'package:clear_water_and_sanitization/screens/Awareness/ArticlesFeedback.dart';
+import 'package:clear_water_and_sanitization/screens/Articles/ArticlesFeedback.dart';
 import 'package:clear_water_and_sanitization/screens/DonationHandling/AddDonation.dart';
 import 'package:clear_water_and_sanitization/screens/DonationHandling/DonationFeedback.dart';
 import 'package:clear_water_and_sanitization/screens/DonationHandling/MainPage.dart';
@@ -22,7 +22,7 @@ class _UserListState extends State<ArticlesFeed> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Donation Feedback List"),
+        title: const Text("Articles Feedback Store"),
         actions: [
           IconButton(
             onPressed: () {

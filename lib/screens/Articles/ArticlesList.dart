@@ -1,7 +1,7 @@
 import 'package:clear_water_and_sanitization/models/ArticleModel.dart';
 import 'package:clear_water_and_sanitization/models/WaterDonation.dart';
-import 'package:clear_water_and_sanitization/screens/Awareness/AddArticles.dart';
-import 'package:clear_water_and_sanitization/screens/Awareness/UpdateArticles.dart';
+import 'package:clear_water_and_sanitization/screens/Articles/AddArticles.dart';
+import 'package:clear_water_and_sanitization/screens/Articles/UpdateArticles.dart';
 import 'package:clear_water_and_sanitization/screens/DonationHandling/AddDonation.dart';
 import 'package:clear_water_and_sanitization/screens/DonationHandling/UpdateDonation.dart';
 import 'package:flutter/foundation.dart';
@@ -86,12 +86,21 @@ class _UserListState extends State<ArticleList> {
                   ),
                 ],
               ),
-              const SizedBox(height: 23),
+              const SizedBox(height: 12),
               Row(
                 children: [
                   Text(
-                    'Date: ${article.name}',
+                    'Description: ${article.address}',
                     style: const TextStyle(color: Colors.white, fontSize: ft)
+                  ),
+                ],
+              ),
+              const SizedBox(height: 12),
+              Row(
+                children: [
+                  Text(
+                      'Author Name: ${article.phi}',
+                      style: const TextStyle(color: Colors.white, fontSize: ft)
                   ),
                 ],
               ),
@@ -124,7 +133,7 @@ class _UserListState extends State<ArticleList> {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10.0)
                         ),
-                        backgroundColor: Colors.green
+                        backgroundColor: Colors.red[500]
                       ),
                       child: const Text("Delete")
                   ),
@@ -144,7 +153,7 @@ class _UserListState extends State<ArticleList> {
 
   alertBox<Widget>(String id) {
     return AlertDialog(
-      title: const Text("Do you want to delete?"),
+      title: const Text("Are you sure you want to delete this article?"),
       actions: [
         ElevatedButton(
             onPressed: (){
