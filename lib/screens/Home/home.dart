@@ -1,3 +1,6 @@
+import 'package:clear_water_and_sanitization/screens/Awareness/AddArticles.dart';
+import 'package:clear_water_and_sanitization/screens/Awareness/ArticlesFeedback.dart';
+import 'package:clear_water_and_sanitization/screens/Awareness/ArticlesList.dart';
 import 'package:clear_water_and_sanitization/screens/DonationHandling/MainPage.dart';
 import 'package:clear_water_and_sanitization/screens/Home/BuyAProduct/categories.dart';
 import 'package:flutter/material.dart';
@@ -127,6 +130,25 @@ class _HomeState extends State<Home> {
                   Navigator.push(context, MaterialPageRoute(builder: (_)=> const MainPage()));
                 },
                 child: const Text('Donation handling'),
+            ),
+
+            ElevatedButton(
+              onPressed: (){
+                Navigator.push(context, MaterialPageRoute(builder: (_)=> const AddArticle()));
+              },
+              child: const Text('articles'),
+            ),
+            ElevatedButton(
+              onPressed: (){
+                Navigator.push(context, MaterialPageRoute(builder: (_)=> const ArticleList()));
+              },
+              child: const Text('articles list'),
+            ),
+            ElevatedButton(
+              onPressed: (){
+                Navigator.push(context, MaterialPageRoute(builder: (_)=> const ArticlesFeedback()));
+              },
+              child: const Text('articles feedback'),
             )
           ],
         )
