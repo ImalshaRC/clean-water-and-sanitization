@@ -6,6 +6,7 @@ import 'package:clear_water_and_sanitization/screens/DonationHandling/DonationLi
 import 'package:clear_water_and_sanitization/screens/DonationHandling/FeedbackList.dart';
 import 'package:clear_water_and_sanitization/screens/DonationHandling/MainPage.dart';
 import 'package:clear_water_and_sanitization/screens/Home/BuyAProduct/categories.dart';
+import 'package:clear_water_and_sanitization/screens/Home/BuyAProduct/orderlist.dart';
 import 'package:flutter/material.dart';
 import '../../services/auth.dart';
 import '../authentication/email_sign_in.dart';
@@ -32,6 +33,16 @@ class HexColor extends Color {
 
 class _HomeState extends State<Home> {
 
+  PopupMenuItem _buildPopupMenuItem(String title) {
+    return PopupMenuItem(
+      child:  Row(
+        children: [
+          Text(title),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,7 +51,19 @@ class _HomeState extends State<Home> {
           backgroundColor: Colors.cyan,
           elevation: 0.0,
           title: const Text('Home'),
-        ),      drawer: Drawer(
+          actions: [
+            PopupMenuButton(
+              itemBuilder: (ctx) => [
+                _buildPopupMenuItem('Search'),
+                _buildPopupMenuItem('Upload'),
+                _buildPopupMenuItem('Copy'),
+                _buildPopupMenuItem('Exit'),
+              ],
+            )
+          ],
+
+        ),
+        drawer: Drawer(
       child: ListView(
           padding: EdgeInsets.zero,
           children:  [
@@ -92,6 +115,13 @@ class _HomeState extends State<Home> {
               onTap: (){
                 Navigator.pop(context);
                 Navigator.push(context, MaterialPageRoute(builder: (_)=> const Categories()));
+              },
+            ),
+            ListTile(
+              title:  const Text('Orders'),
+              onTap: (){
+                Navigator.pop(context);
+                Navigator.push(context, MaterialPageRoute(builder: (_)=> const OrderList()));
               },
             ),
             ListTile(

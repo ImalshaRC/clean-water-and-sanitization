@@ -22,6 +22,7 @@ class _ProductOneState extends State<ProductOne> {
   late SingleUser singleUser;
   late DocumentReference<Map<String, dynamic>> oneUser;
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  late String qty ='3';
 
 
   void getUserById(userId) async{
@@ -42,14 +43,26 @@ class _ProductOneState extends State<ProductOne> {
   }
 
   void changeScreen(singleUser) {
+
     Navigator.of(context).push(MaterialPageRoute(builder: (_){
-      return Checkout(singleUser);
+      return Checkout(singleUser,price:585,name:'Komarika Hand Sanitizer',qty: qty);
     }));
   }
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController qty = TextEditingController();
+    final TextEditingController _qty = TextEditingController();
+
+
+
+
+    @override
+    void dispose() {
+      // Clean up the controller when the widget is disposed.
+      _qty.dispose();
+      super.dispose();
+    }
+
 
     return Scaffold(
         backgroundColor: Colors.white,
@@ -112,10 +125,12 @@ class _ProductOneState extends State<ProductOne> {
               ),
               Padding(padding:EdgeInsets.fromLTRB(20.0,0.0,0.0,20.0),
                 child: TextFormField(
-                  controller: qty,
+                  controller: _qty,
+                  keyboardType: TextInputType.number,
                   decoration: const InputDecoration(
                     hintText: 'Amount you need to buy',
                     labelText: 'Quantity *',
+
 
                   ),
                 ),
@@ -123,6 +138,9 @@ class _ProductOneState extends State<ProductOne> {
               Padding(padding: const EdgeInsets.fromLTRB(0.0, 00.0, 0.0, 0.0),
                 child: ElevatedButton(
                   onPressed: () async {
+
+                    qty = _qty.text;
+                    print(qty);
 
                     final userId =  _auth.currentUser?.uid;
 

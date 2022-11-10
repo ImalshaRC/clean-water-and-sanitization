@@ -1,3 +1,4 @@
+import 'package:clear_water_and_sanitization/screens/Home/home.dart';
 import 'package:clear_water_and_sanitization/services/validators.dart';
 import 'package:flutter/material.dart';
 import '../../services/auth.dart';
@@ -244,7 +245,7 @@ class RegistrationFromState extends State<RegisterFormWidget>{
                                 ScaffoldMessenger.of(context).showSnackBar(
                                     const SnackBar(content: Text('Successfully Created Account'),
                                     ));
-                                Navigator.push(context, MaterialPageRoute(builder: (_)=> const EmailSignin()));
+                                Navigator.push(context, MaterialPageRoute(builder: (_)=> const Home()));
                               }else{
                                 ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(content: new Text(result),
