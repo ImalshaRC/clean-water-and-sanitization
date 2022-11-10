@@ -80,7 +80,7 @@ class _CrudAppState extends State<AddDonation> {
             ),
             keyboardType: TextInputType.number,
           ),
-          const SizedBox(height: 24),
+          const SizedBox(height: 60),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                 primary: Colors.cyan,
@@ -157,6 +157,8 @@ class _CrudAppState extends State<AddDonation> {
       final json = waterDonate.toJson();
 
       await docWaterDonation.set(json);
+
+      showMessage('Donation Added Successfully');
 
       goToPage();
     }

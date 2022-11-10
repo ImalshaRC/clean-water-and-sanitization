@@ -66,7 +66,7 @@ class _UserListState extends State<DonationList> {
         const SizedBox(height: 10),
         ListTile(
           shape: RoundedRectangleBorder(borderRadius: borderRadius),
-          selectedTileColor: Colors.grey,
+          selectedTileColor: Colors.blueAccent,
           selected: true,
           title: Column(
             children: [
@@ -135,7 +135,7 @@ class _UserListState extends State<DonationList> {
               return UpdateDonation(donation.id);
             }));
           },
-        )
+        ),
       ],
     );
   }

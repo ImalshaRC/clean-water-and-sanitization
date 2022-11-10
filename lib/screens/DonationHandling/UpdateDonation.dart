@@ -98,7 +98,7 @@ class _UpdateUserState extends State<UpdateDonation> {
             ),
             keyboardType: TextInputType.number,
           ),
-          const SizedBox(height: 24),
+          const SizedBox(height: 60),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
               primary: Colors.cyan,
@@ -165,6 +165,12 @@ class _UpdateUserState extends State<UpdateDonation> {
     super.initState();
   }
 
+  showMessage(message) {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Text(message),
+    ));
+  }
+
   readUser() async{
     singleDonation = FirebaseFirestore.instance.collection('waterDonation').doc(userId);
 
@@ -212,6 +218,7 @@ class _UpdateUserState extends State<UpdateDonation> {
 
     try{
       await singleDonation.update(json);
+      showMessage('Donation Updated Successfully');
     }catch(err){
       if (kDebugMode) {
         print(err.toString());
