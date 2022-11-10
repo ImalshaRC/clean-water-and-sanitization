@@ -1,6 +1,7 @@
 import 'package:clear_water_and_sanitization/models/WaterDonation.dart';
 import 'package:clear_water_and_sanitization/screens/DonationHandling/DonationList.dart';
 import 'package:clear_water_and_sanitization/screens/DonationHandling/FeedbackList.dart';
+import 'package:clear_water_and_sanitization/screens/Home/home.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -26,6 +27,16 @@ class _CrudAppState extends State<AddDonation> {
       appBar: AppBar(
         backgroundColor: Colors.cyan,
         title: const Text("Add donation"),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (_){
+                return const Home();
+              }));
+            },
+            icon: const Icon(Icons.home),
+          )
+        ],
       ),
       body: ListView(
         padding: const EdgeInsets.all(16),

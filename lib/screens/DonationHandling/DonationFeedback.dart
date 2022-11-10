@@ -1,6 +1,7 @@
 import 'package:clear_water_and_sanitization/models/DonationFModel.dart';
 import 'package:clear_water_and_sanitization/screens/DonationHandling/FeedbackList.dart';
 import 'package:clear_water_and_sanitization/screens/DonationHandling/MainPage.dart';
+import 'package:clear_water_and_sanitization/screens/Home/home.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +25,16 @@ class _DonationFeedbackState extends State<DonationFeedback> {
       appBar: AppBar(
         backgroundColor: Colors.cyan,
         title: const Text('Donation Feedback'),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (_){
+                return const Home();
+              }));
+            },
+            icon: const Icon(Icons.home),
+          )
+        ],
       ),
       body: ListView(
         children:  [

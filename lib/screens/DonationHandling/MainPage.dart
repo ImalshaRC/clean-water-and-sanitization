@@ -1,6 +1,7 @@
 import 'package:clear_water_and_sanitization/screens/DonationHandling/AddDonation.dart';
 import 'package:clear_water_and_sanitization/screens/DonationHandling/DonationList.dart';
 import 'package:clear_water_and_sanitization/screens/DonationHandling/FeedbackList.dart';
+import 'package:clear_water_and_sanitization/screens/Home/home.dart';
 import 'package:flutter/material.dart';
 
 class MainPage extends StatelessWidget {
@@ -12,6 +13,16 @@ class MainPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.cyan,
         title: const Text('Donation Main Page'),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (_){
+                return const Home();
+              }));
+            },
+            icon: const Icon(Icons.home),
+          )
+        ],
       ),
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 15),
