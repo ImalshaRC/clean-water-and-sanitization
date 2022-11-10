@@ -2,6 +2,7 @@ import 'package:clear_water_and_sanitization/screens/Awareness/AddArticles.dart'
 import 'package:clear_water_and_sanitization/screens/Awareness/ArticlesFeedback.dart';
 import 'package:clear_water_and_sanitization/screens/Awareness/ArticlesList.dart';
 import 'package:clear_water_and_sanitization/screens/DonationHandling/AddDonation.dart';
+import 'package:clear_water_and_sanitization/screens/DonationHandling/DonationChart.dart';
 import 'package:clear_water_and_sanitization/screens/DonationHandling/DonationList.dart';
 import 'package:clear_water_and_sanitization/screens/DonationHandling/FeedbackList.dart';
 import 'package:clear_water_and_sanitization/screens/DonationHandling/MainPage.dart';
@@ -90,6 +91,13 @@ class _HomeState extends State<Home> {
               },
             ),
             ListTile(
+              title:  const Text('Donation Main Menu'),
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (_)=> const MainPage()));
+                // Navigator.push(context, MaterialPageRoute(builder: (_)=> const Profile()));
+              },
+            ),
+            ListTile(
               title:  const Text('Add Donation'),
               onTap: (){
                 Navigator.push(context, MaterialPageRoute(builder: (_)=> const AddDonation()));
@@ -107,6 +115,13 @@ class _HomeState extends State<Home> {
               title:  const Text('Donation Feedback'),
               onTap: (){
                 Navigator.push(context, MaterialPageRoute(builder: (_)=> const FeedbackList()));
+                // Navigator.push(context, MaterialPageRoute(builder: (_)=> const Profile()));
+              },
+            ),
+            ListTile(
+              title:  const Text('Donation Pie Chart'),
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (_)=> const DonationChart()));
                 // Navigator.push(context, MaterialPageRoute(builder: (_)=> const Profile()));
               },
             ),

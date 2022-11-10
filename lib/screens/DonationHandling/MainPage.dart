@@ -10,6 +10,7 @@ class MainPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.cyan,
         title: const Text('Donation Main Page'),
       ),
       body: ListView(
@@ -18,6 +19,7 @@ class MainPage extends StatelessWidget {
           const SizedBox(height: 20),
           const Image(
               image: AssetImage('assets/donation1.png'),
+              // width: ,
           ),
           const SizedBox(height: 80),
           ElevatedButton(

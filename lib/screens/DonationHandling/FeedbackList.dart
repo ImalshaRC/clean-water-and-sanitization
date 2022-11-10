@@ -69,7 +69,7 @@ class _UserListState extends State<FeedbackList> {
         const SizedBox(height: 10),
         ListTile(
           shape: RoundedRectangleBorder(borderRadius: borderRadius),
-          selectedTileColor: Colors.grey,
+          selectedTileColor: Colors.blueAccent,
           selected: true,
           title: Column(
             children: [
@@ -92,7 +92,7 @@ class _UserListState extends State<FeedbackList> {
                 children: [
                   Text(
                       feedback.feedback,
-                      style: const TextStyle(color: Colors.white, fontSize: ft)
+                      style: const TextStyle(color: Colors.white, fontSize: 14)
                   ),
                 ],
               ),
@@ -109,7 +109,7 @@ class _UserListState extends State<FeedbackList> {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10.0)
                           ),
-                          backgroundColor: Colors.green
+                          backgroundColor: Colors.cyan
                       ),
                       child: const Text("View"),
                   )
