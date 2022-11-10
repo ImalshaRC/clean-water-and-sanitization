@@ -26,6 +26,16 @@ class HexColor extends Color {
 
 class _HomeState extends State<Home> {
 
+  PopupMenuItem _buildPopupMenuItem(String title) {
+    return PopupMenuItem(
+      child:  Row(
+        children: [
+          Text(title),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,7 +44,19 @@ class _HomeState extends State<Home> {
           backgroundColor: Colors.cyan,
           elevation: 0.0,
           title: const Text('Home'),
-        ),      drawer: Drawer(
+          actions: [
+            PopupMenuButton(
+              itemBuilder: (ctx) => [
+                _buildPopupMenuItem('Search'),
+                _buildPopupMenuItem('Upload'),
+                _buildPopupMenuItem('Copy'),
+                _buildPopupMenuItem('Exit'),
+              ],
+            )
+          ],
+
+        ),
+        drawer: Drawer(
       child: ListView(
           padding: EdgeInsets.zero,
           children:  [

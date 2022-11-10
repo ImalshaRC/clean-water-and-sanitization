@@ -6,8 +6,11 @@ import '../../../models/SingleUser.dart';
 class Checkout extends StatefulWidget {
 
   final SingleUser singleUser;
+  final int price;
+  final String name;
+  final String qty;
 
-  const Checkout(this.singleUser, {Key? key}) : super(key: key);
+  const Checkout(this.singleUser, {Key? key, required this.price, required this.name, required this.qty}) : super(key: key);
 
   @override
   State<Checkout> createState() => _CheckoutState();
@@ -25,9 +28,16 @@ class _CheckoutState extends State<Checkout> {
   @override
   Widget build(BuildContext context) {
 
-    nameControl.text = widget.singleUser.firstName + ' ' +widget.singleUser.lastName;
-    addressControl.text = widget.singleUser.firstName + ' ' +widget.singleUser.lastName;
-    phoneControl.text = widget.singleUser.firstName + ' ' +widget.singleUser.lastName;
+    nameControl.text = '${widget.singleUser.firstName} ${widget.singleUser.lastName}';
+    addressControl.text = widget.singleUser.address;
+    phoneControl.text = widget.singleUser.phoneNo;
+
+    int? quantity = int.tryParse(widget.qty);
+    String qty3 = quantity.toString();
+
+    int ? totalQuantity = (widget.price! * 3)!;
+    String totalQty = totalQuantity.toString();
+
 
     return Scaffold(
         backgroundColor: Colors.white,
@@ -41,20 +51,20 @@ class _CheckoutState extends State<Checkout> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children:const <Widget> [
-            Text('Data1'),
-            Text('Data2')
+            Text("Item Name"),
+            Text('Qty')
           ],),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget> [
-            Text(widget.singleUser.firstName),
-            Text('Data2')
+            Text(widget.name.toString()),
+            Text(qty3)
           ],),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget> [
             Text('Total'),
-            Text('Data2')
+            Text(totalQty)
           ],),
         Container(
           padding: const EdgeInsets.fromLTRB(20.0, 50.0, 20.0, 0.0),
