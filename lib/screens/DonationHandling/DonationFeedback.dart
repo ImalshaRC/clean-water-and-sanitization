@@ -22,6 +22,7 @@ class _DonationFeedbackState extends State<DonationFeedback> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.cyan,
         title: const Text('Donation Feedback'),
       ),
       body: ListView(
@@ -71,7 +72,7 @@ class _DonationFeedbackState extends State<DonationFeedback> {
               const SizedBox(height: 15),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.blueAccent,
+                  primary: Colors.cyan,
                   onPrimary: Colors.white,
                   shadowColor: Colors.blueAccent,
                   elevation: 3,

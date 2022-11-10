@@ -1,37 +1,38 @@
+import 'package:clear_water_and_sanitization/models/SurveyFModel.dart';
 import 'package:clear_water_and_sanitization/models/WaterDonation.dart';
 import 'package:clear_water_and_sanitization/screens/DonationHandling/AddDonation.dart';
 import 'package:clear_water_and_sanitization/screens/DonationHandling/UpdateDonation.dart';
+import 'package:clear_water_and_sanitization/screens/serveyManagement/AddSurvey.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class DonationList extends StatefulWidget {
-  const DonationList({Key? key}) : super(key: key);
+class SurveyList extends StatefulWidget {
+  const SurveyList({Key? key}) : super(key: key);
 
   @override
-  State<DonationList> createState() => _UserListState();
+  State<SurveyList> createState() => _UserListState();
 }
 
-class _UserListState extends State<DonationList> {
+class _UserListState extends State<SurveyList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.cyan,
-        title: const Text("Water Donation List"),
+        title: const Text("Survey List"),
         actions: [
           IconButton(
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(builder: (_){
-                  return const AddDonation();
+                  return const AddSurvey();
                 }));
               },
               icon: const Icon(Icons.add),
           )
         ],
       ),
-      body: StreamBuilder<List<WaterDonation>>(
-        stream: readDonations(),
+      body: StreamBuilder<List<SurveyFModel>>(
+        // stream: readSurvey(),
         builder: (context, snapshot){
           if(snapshot.hasData){
             final users = snapshot.data!;
@@ -56,7 +57,7 @@ class _UserListState extends State<DonationList> {
     );
   }
 
-  Widget buildUser(WaterDonation donation) {
+  Widget buildUser(SurveyFModel Survey) {
 
     var borderRadius = const BorderRadius.all(Radius.circular(18));
     const double ft = 19;
@@ -66,7 +67,7 @@ class _UserListState extends State<DonationList> {
         const SizedBox(height: 10),
         ListTile(
           shape: RoundedRectangleBorder(borderRadius: borderRadius),
-          selectedTileColor: Colors.blueAccent,
+          selectedTileColor: Colors.grey,
           selected: true,
           title: Column(
             children: [
@@ -74,39 +75,31 @@ class _UserListState extends State<DonationList> {
                 children: [
                   const SizedBox(height: 7),
                   Text(
-                      donation.name,
+                      Survey.province,
                       style: const TextStyle(color: Colors.white, fontSize: ft)
                   ),
                   const Spacer(),
                   Text(
-                      donation.mobile,
+                      Survey.district,
                       style: const TextStyle(color: Colors.white, fontSize: ft)
                   ),
                 ],
               ),
-              const SizedBox(height: 23),
-              Row(
-                children: [
-                  Text(
-                    '${donation.liter} Liters',
-                    style: const TextStyle(color: Colors.white, fontSize: ft)
-                  ),
-                ],
-              ),
+
               const SizedBox(height: 7),
               Row(
                 children: [
                   ElevatedButton(
                       onPressed: (){
                         Navigator.of(context).push(MaterialPageRoute(builder: (_) {
-                          return UpdateDonation(donation.id);
+                          return UpdateDonation(Survey.id);
                         }));
                       },
                       style: ElevatedButton.styleFrom(
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10.0)
                         ),
-                        backgroundColor: Colors.cyan
+                        backgroundColor: Colors.green
                       ),
                       child: const Text("Update")
                   ),
@@ -115,14 +108,14 @@ class _UserListState extends State<DonationList> {
                       onPressed: (){
                         showDialog(
                           context: context,
-                          builder: (context) => alertBox(donation.id),
+                          builder: (context) => alertBox(Survey.id),
                         );
                       },
                       style: ElevatedButton.styleFrom(
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10.0)
                         ),
-                        backgroundColor: Colors.red
+                        backgroundColor: Colors.green
                       ),
                       child: const Text("Delete")
                   ),
@@ -132,10 +125,10 @@ class _UserListState extends State<DonationList> {
           ),
           onTap: () {
             Navigator.of(context).push(MaterialPageRoute(builder: (_) {
-              return UpdateDonation(donation.id);
+              return UpdateDonation(Survey.id);
             }));
           },
-        ),
+        )
       ],
     );
   }
@@ -145,22 +138,16 @@ class _UserListState extends State<DonationList> {
       title: const Text("Do you want to delete?"),
       actions: [
         ElevatedButton(
-            style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.cyan
-            ),
             onPressed: (){
               Navigator.pop(context);
             },
             child: const Text("No")
         ),
         ElevatedButton(
-            style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.red
-            ),
             onPressed: (){
               deleteUser(id);
               Navigator.of(context).push(MaterialPageRoute(builder: (_){
-                return const DonationList();
+                return const SurveyList();
               }));
             },
             child: const Text("Yes")
@@ -169,8 +156,8 @@ class _UserListState extends State<DonationList> {
     );
   }
 
-  Future<dynamic> deleteUser(userId) async{
-    var singleDonation = FirebaseFirestore.instance.collection('waterDonation').doc(userId);
+  Future<dynamic> deleteUser(Id) async{
+    var singleDonation = FirebaseFirestore.instance.collection('docSurvey').doc(Id);
     try{
       await singleDonation.delete();
     }catch(err){
@@ -180,8 +167,8 @@ class _UserListState extends State<DonationList> {
     }
   }
 
-  Stream<List<WaterDonation>> readDonations() => FirebaseFirestore.instance
-      .collection('waterDonation')
+  Stream<List<WaterDonation>> readSurvey() => FirebaseFirestore.instance
+      .collection('docSurvey')
       .snapshots()
       .map((snapshot) =>
           snapshot.docs.map((doc) =>

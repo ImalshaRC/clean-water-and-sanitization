@@ -35,7 +35,6 @@ class _UpdateUserState extends State<UpdateDonation> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.cyan,
         title:  const Text("Update Donation"),
         actions: [
           IconButton(
@@ -98,10 +97,10 @@ class _UpdateUserState extends State<UpdateDonation> {
             ),
             keyboardType: TextInputType.number,
           ),
-          const SizedBox(height: 60),
+          const SizedBox(height: 24),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
-              primary: Colors.cyan,
+              primary: Colors.blueAccent,
               onPrimary: Colors.white,
               shadowColor: Colors.blueAccent,
               elevation: 3,
@@ -165,12 +164,6 @@ class _UpdateUserState extends State<UpdateDonation> {
     super.initState();
   }
 
-  showMessage(message) {
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: Text(message),
-    ));
-  }
-
   readUser() async{
     singleDonation = FirebaseFirestore.instance.collection('waterDonation').doc(userId);
 
@@ -218,7 +211,6 @@ class _UpdateUserState extends State<UpdateDonation> {
 
     try{
       await singleDonation.update(json);
-      showMessage('Donation Updated Successfully');
     }catch(err){
       if (kDebugMode) {
         print(err.toString());

@@ -1,5 +1,8 @@
 import 'package:clear_water_and_sanitization/screens/Home/BuyAProduct/categories.dart';
+import 'package:clear_water_and_sanitization/screens/Home/BuyAProduct/handsanitizers/Product2.dart';
 import 'package:clear_water_and_sanitization/screens/Home/BuyAProduct/handsanitizers/product1.dart';
+import 'package:clear_water_and_sanitization/screens/Home/BuyAProduct/handsanitizers/product3.dart';
+import 'package:clear_water_and_sanitization/screens/Home/BuyAProduct/handsanitizers/product4.dart';
 import 'package:flutter/material.dart';
 
 
@@ -34,10 +37,10 @@ class HandSanitizer extends StatelessWidget {
             Card(
               child: ListTile(
                 onTap: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (_)=> const Categories()));
+                  Navigator.push(context, MaterialPageRoute(builder: (_)=> const ProductTwo()));
                 },
                 leading: Image.asset('assets/hs1.webp'),
-                title: const Text('Safeguard Hand Neem Sanitizer'),
+                title: const Text('Safeguard Hand Sanitizer'),
                 subtitle: const Text(
                     "Rs.132.00"
                 ),
@@ -48,10 +51,10 @@ class HandSanitizer extends StatelessWidget {
             Card(
               child: ListTile(
                 onTap: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (_)=> const Categories()));
+                  Navigator.push(context, MaterialPageRoute(builder: (_)=> const ProductThree()));
                 },
                 leading: Image.asset('assets/hs2.webp'),
-                title: const Text('Safeguard Hand Sanitizng Gel'),
+                title: const Text('Safeguard Sanitizng Gel'),
                 subtitle: const Text(
                     "Rs.236.00"
                 ),
@@ -62,7 +65,7 @@ class HandSanitizer extends StatelessWidget {
             Card(
               child: ListTile(
                 onTap: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (_)=> const Categories()));
+                  Navigator.push(context, MaterialPageRoute(builder: (_)=> const ProductFour()));
                 },
                 leading: Image.asset('assets/hs3.webp'),
                 title: const Text('Safeguard Citrus Sanitizer'),
