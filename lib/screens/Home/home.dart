@@ -1,6 +1,13 @@
+import 'package:clear_water_and_sanitization/screens/Awareness/AddArticles.dart';
+import 'package:clear_water_and_sanitization/screens/Awareness/ArticlesFeedback.dart';
+import 'package:clear_water_and_sanitization/screens/Awareness/ArticlesList.dart';
+import 'package:clear_water_and_sanitization/screens/DonationHandling/AddDonation.dart';
+import 'package:clear_water_and_sanitization/screens/DonationHandling/DonationChart.dart';
+import 'package:clear_water_and_sanitization/screens/DonationHandling/DonationList.dart';
+import 'package:clear_water_and_sanitization/screens/DonationHandling/FeedbackList.dart';
 import 'package:clear_water_and_sanitization/screens/DonationHandling/MainPage.dart';
 import 'package:clear_water_and_sanitization/screens/Home/BuyAProduct/categories.dart';
-import 'package:clear_water_and_sanitization/screens/serveyManagement/AddSurvey.dart';
+import 'package:clear_water_and_sanitization/screens/Home/BuyAProduct/orderlist.dart';
 import 'package:flutter/material.dart';
 import '../../services/auth.dart';
 import '../authentication/email_sign_in.dart';
@@ -27,6 +34,16 @@ class HexColor extends Color {
 
 class _HomeState extends State<Home> {
 
+  PopupMenuItem _buildPopupMenuItem(String title) {
+    return PopupMenuItem(
+      child:  Row(
+        children: [
+          Text(title),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,29 +52,76 @@ class _HomeState extends State<Home> {
           backgroundColor: Colors.cyan,
           elevation: 0.0,
           title: const Text('Home'),
-        ),      drawer: Drawer(
+          actions: [
+            PopupMenuButton(
+              itemBuilder: (ctx) => [
+                _buildPopupMenuItem('Search'),
+                _buildPopupMenuItem('Upload'),
+                _buildPopupMenuItem('Copy'),
+                _buildPopupMenuItem('Exit'),
+              ],
+            )
+          ],
+
+        ),
+        drawer: Drawer(
       child: ListView(
-          padding: EdgeInsets.zero,
+          padding: EdgeInsets.fromLTRB(0.0, 30.0, 0.0, 0.0),
           children:  [
-            DrawerHeader(
-                decoration: const BoxDecoration(
-                  color: Colors.cyan,
-                ),
-                child: Center(child: Wrap(
-                  children: <Widget>[
-                    Column(
-                      children:  const [
-                        Text('Full Name',style: TextStyle(color: Colors.white)),
-                        Text('Email',style: TextStyle(color: Colors.white))
-                      ],
-                    )
-                  ],
-                ))
-            ),
+            // DrawerHeader(
+            //     decoration: const BoxDecoration(
+            //       color: Colors.cyan,
+            //     ),
+            //     child: Center(child: Wrap(
+            //       children: <Widget>[
+            //         Column(
+            //           children:  const [
+            //             Text('Full Name',style: TextStyle(color: Colors.white)),
+            //             Text('Email',style: TextStyle(color: Colors.white))
+            //           ],
+            //         )
+            //       ],
+            //     ))
+            // ),
             ListTile(
               title:  const Text('Profile'),
               onTap: (){
                 Navigator.pop(context);
+                // Navigator.push(context, MaterialPageRoute(builder: (_)=> const Profile()));
+              },
+            ),
+            ListTile(
+              title:  const Text('Donation Main Menu'),
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (_)=> const MainPage()));
+                // Navigator.push(context, MaterialPageRoute(builder: (_)=> const Profile()));
+              },
+            ),
+            ListTile(
+              title:  const Text('Add Donation'),
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (_)=> const AddDonation()));
+                // Navigator.push(context, MaterialPageRoute(builder: (_)=> const Profile()));
+              },
+            ),
+            ListTile(
+              title:  const Text('All Donations'),
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (_)=> const DonationList()));
+                // Navigator.push(context, MaterialPageRoute(builder: (_)=> const Profile()));
+              },
+            ),
+            ListTile(
+              title:  const Text('Donation Feedback'),
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (_)=> const FeedbackList()));
+                // Navigator.push(context, MaterialPageRoute(builder: (_)=> const Profile()));
+              },
+            ),
+            ListTile(
+              title:  const Text('Donation Pie Chart'),
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (_)=> const DonationChart()));
                 // Navigator.push(context, MaterialPageRoute(builder: (_)=> const Profile()));
               },
             ),
@@ -69,9 +133,10 @@ class _HomeState extends State<Home> {
               },
             ),
             ListTile(
-              title:  const Text('Servery'),
+              title:  const Text('Orders'),
               onTap: (){
-                Navigator.push(context, MaterialPageRoute(builder: (_)=> const AddSurvey()));
+                Navigator.pop(context);
+                Navigator.push(context, MaterialPageRoute(builder: (_)=> const OrderList()));
               },
             ),
             ListTile(
@@ -134,6 +199,25 @@ class _HomeState extends State<Home> {
                   Navigator.push(context, MaterialPageRoute(builder: (_)=> const MainPage()));
                 },
                 child: const Text('Donation handling'),
+            ),
+
+            ElevatedButton(
+              onPressed: (){
+                Navigator.push(context, MaterialPageRoute(builder: (_)=> const AddArticle()));
+              },
+              child: const Text('articles'),
+            ),
+            ElevatedButton(
+              onPressed: (){
+                Navigator.push(context, MaterialPageRoute(builder: (_)=> const ArticleList()));
+              },
+              child: const Text('articles list'),
+            ),
+            ElevatedButton(
+              onPressed: (){
+                Navigator.push(context, MaterialPageRoute(builder: (_)=> const ArticlesFeedback()));
+              },
+              child: const Text('articles feedback'),
             )
           ],
         )

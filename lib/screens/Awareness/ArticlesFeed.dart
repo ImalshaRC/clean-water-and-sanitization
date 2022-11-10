@@ -1,5 +1,7 @@
-import 'package:clear_water_and_sanitization/models/DonationFModel.dart';
+
+import 'package:clear_water_and_sanitization/models/ArticleFModel.dart';
 import 'package:clear_water_and_sanitization/models/WaterDonation.dart';
+import 'package:clear_water_and_sanitization/screens/Awareness/ArticlesFeedback.dart';
 import 'package:clear_water_and_sanitization/screens/DonationHandling/AddDonation.dart';
 import 'package:clear_water_and_sanitization/screens/DonationHandling/DonationFeedback.dart';
 import 'package:clear_water_and_sanitization/screens/DonationHandling/MainPage.dart';
@@ -8,32 +10,31 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class FeedbackList extends StatefulWidget {
-  const FeedbackList({Key? key}) : super(key: key);
+class ArticlesFeed extends StatefulWidget {
+  const ArticlesFeed({Key? key}) : super(key: key);
 
   @override
-  State<FeedbackList> createState() => _UserListState();
+  State<ArticlesFeed> createState() => _UserListState();
 }
 
-class _UserListState extends State<FeedbackList> {
+class _UserListState extends State<ArticlesFeed> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.cyan,
         title: const Text("Donation Feedback List"),
         actions: [
           IconButton(
             onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(builder: (_){
-                return const DonationFeedback();
+                return const ArticlesFeedback();
               }));
             },
             icon: const Icon(Icons.add),
           )
         ],
       ),
-      body: StreamBuilder<List<DonationFModel>>(
+      body: StreamBuilder<List<ArticleFModel>>(
         stream: readFeedbacks(),
         builder: (context, snapshot){
           if(snapshot.hasData){
@@ -59,7 +60,7 @@ class _UserListState extends State<FeedbackList> {
     );
   }
 
-  Widget buildUser(DonationFModel feedback) {
+  Widget buildUser(ArticleFModel feedback) {
 
     var borderRadius = const BorderRadius.all(Radius.circular(18));
     const double ft = 19;
@@ -69,7 +70,7 @@ class _UserListState extends State<FeedbackList> {
         const SizedBox(height: 10),
         ListTile(
           shape: RoundedRectangleBorder(borderRadius: borderRadius),
-          selectedTileColor: Colors.blueAccent,
+          selectedTileColor: Colors.grey,
           selected: true,
           title: Column(
             children: [
@@ -82,7 +83,7 @@ class _UserListState extends State<FeedbackList> {
                   ),
                   const Spacer(),
                   Text(
-                      '${feedback.rate.toString()}/5',
+                      feedback.name,
                       style: const TextStyle(color: Colors.white, fontSize: ft)
                   ),
                 ],
@@ -92,29 +93,11 @@ class _UserListState extends State<FeedbackList> {
                 children: [
                   Text(
                       feedback.feedback,
-                      style: const TextStyle(color: Colors.white, fontSize: 14)
+                      style: const TextStyle(color: Colors.white, fontSize: ft)
                   ),
                 ],
               ),
               const SizedBox(height: 7),
-              Row(
-                children: [
-                  ElevatedButton(
-                      onPressed: (){
-                        // Navigator.of(context).push(MaterialPageRoute(builder: (_) {
-                        //   return UpdateDonation(feedback.feedback);
-                        // }));
-                      },
-                      style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0)
-                          ),
-                          backgroundColor: Colors.cyan
-                      ),
-                      child: const Text("View"),
-                  )
-                ],
-              ),
             ],
           ),
           onTap: () {
@@ -127,12 +110,12 @@ class _UserListState extends State<FeedbackList> {
     );
   }
 
-  Stream<List<DonationFModel>> readFeedbacks() => FirebaseFirestore.instance
-      .collection('donationFeedback')
+  Stream<List<ArticleFModel>> readFeedbacks() => FirebaseFirestore.instance
+      .collection('articleFeedback')
       .snapshots()
       .map((snapshot) =>
       snapshot.docs.map((doc) =>
-          DonationFModel.fromJson(doc.data()),
+          ArticleFModel.fromJson(doc.data()),
       ).toList(),
   );
 }

@@ -1,5 +1,4 @@
 import 'package:clear_water_and_sanitization/screens/DonationHandling/AddDonation.dart';
-import 'package:clear_water_and_sanitization/screens/DonationHandling/DonationFeedback.dart';
 import 'package:clear_water_and_sanitization/screens/DonationHandling/DonationList.dart';
 import 'package:clear_water_and_sanitization/screens/DonationHandling/FeedbackList.dart';
 import 'package:flutter/material.dart';
@@ -11,20 +10,23 @@ class MainPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.cyan,
         title: const Text('Donation Main Page'),
       ),
       body: ListView(
+        padding: const EdgeInsets.symmetric(horizontal: 15),
         children: [
           const SizedBox(height: 20),
           const Image(
               image: AssetImage('assets/donation1.png'),
+              // width: ,
           ),
           const SizedBox(height: 80),
           ElevatedButton(
               style: ElevatedButton.styleFrom(
                 primary: Colors.blueAccent,
                 onPrimary: Colors.white,
-                shadowColor: Colors.greenAccent,
+                shadowColor: Colors.blueGrey,
                 elevation: 3,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(25.0)),
@@ -40,10 +42,11 @@ class MainPage extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                 primary: Colors.blueAccent,
                 onPrimary: Colors.white,
-                shadowColor: Colors.greenAccent,
+                shadowColor: Colors.blueGrey,
                 elevation: 3,
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(25.0)),
+                    borderRadius: BorderRadius.circular(25.0),
+                 ),
                 minimumSize: const Size(100, 60),
               ),
             onPressed: (){
@@ -56,10 +59,11 @@ class MainPage extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                 primary: Colors.blueAccent,
                 onPrimary: Colors.white,
-                shadowColor: Colors.greenAccent,
+                shadowColor: Colors.blueGrey,
                 elevation: 3,
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(25.0)),
+                    borderRadius: BorderRadius.circular(25.0),
+                ),
                 minimumSize: const Size(100, 60),
               ),
               onPressed: (){

@@ -1,3 +1,4 @@
+import 'package:clear_water_and_sanitization/models/ArticleModel.dart';
 import 'package:clear_water_and_sanitization/models/WaterDonation.dart';
 import 'package:clear_water_and_sanitization/screens/DonationHandling/DonationList.dart';
 import 'package:flutter/foundation.dart';
@@ -5,38 +6,37 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 
-class UpdateDonation extends StatefulWidget {
+class UpdateArticle extends StatefulWidget {
 
-  final String userId;
+  final String articleId;
 
-  const UpdateDonation(this.userId, {Key? key}) : super(key: key);
+  const UpdateArticle(this.articleId, {Key? key}) : super(key: key);
 
   @override
   // ignore: no_logic_in_create_state
-  State<UpdateDonation> createState() => _UpdateUserState(userId);
+  State<UpdateArticle> createState() => _UpdateUserState(articleId);
 }
 
-class _UpdateUserState extends State<UpdateDonation> {
+class _UpdateUserState extends State<UpdateArticle> {
 
-  String userId;
+  String articleId;
   final nameController = TextEditingController();
   final addressController = TextEditingController();
   final mobileController = TextEditingController();
   final literController = TextEditingController();
   final phiController = TextEditingController();
 
-  _UpdateUserState(this.userId);
+  _UpdateUserState(this.articleId);
 
-  late WaterDonation donationData;
-  late DocumentReference<Map<String, dynamic>> singleDonation;
+  late ArticleModel articleData;
+  late DocumentReference<Map<String, dynamic>> singleArticle;
   final double textBorder = 20;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.cyan,
-        title:  const Text("Update Donation"),
+        title:  const Text("Update Article"),
         actions: [
           IconButton(
             icon: const Icon(Icons.add),
@@ -98,10 +98,10 @@ class _UpdateUserState extends State<UpdateDonation> {
             ),
             keyboardType: TextInputType.number,
           ),
-          const SizedBox(height: 60),
+          const SizedBox(height: 24),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
-              primary: Colors.cyan,
+              primary: Colors.blueAccent,
               onPrimary: Colors.white,
               shadowColor: Colors.blueAccent,
               elevation: 3,
@@ -111,7 +111,7 @@ class _UpdateUserState extends State<UpdateDonation> {
             ),
             onPressed: () {
               Navigator.pop(context);
-              updateDonation(
+              updateArticle(
                   name: nameController.text,
                   address: addressController.text,
                   mobile: mobileController.text,
@@ -148,7 +148,7 @@ class _UpdateUserState extends State<UpdateDonation> {
         ),
         ElevatedButton(
             onPressed: (){
-              deleteUser();
+              deleteArticle();
               Navigator.of(context).push(MaterialPageRoute(builder: (_){
                 return const DonationList();
               }));
@@ -161,31 +161,27 @@ class _UpdateUserState extends State<UpdateDonation> {
 
   @override
   void initState() {
-    readUser();
+    readArticle();
     super.initState();
   }
 
-  showMessage(message) {
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: Text(message),
-    ));
-  }
+  readArticle() async{
+    singleArticle = FirebaseFirestore.instance.collection('article').doc(articleId);
 
-  readUser() async{
-    singleDonation = FirebaseFirestore.instance.collection('waterDonation').doc(userId);
+    print(articleId);
 
     final DocumentSnapshot<Map<String, dynamic>> snapshot;
 
     try{
-      snapshot  = await singleDonation.get();
+      snapshot  = await singleArticle.get();
 
       if(snapshot.exists){
-        donationData = WaterDonation.fromJson(snapshot.data()!);
-        nameController.text = donationData.name;
-        addressController.text = donationData.address;
-        mobileController.text = donationData.mobile;
-        literController.text = donationData.liter;
-        phiController.text = donationData.phi;
+        articleData = ArticleModel.fromJson(snapshot.data()!);
+        nameController.text = articleData.name;
+        addressController.text = articleData.address;
+        mobileController.text = articleData.mobile;
+        literController.text = articleData.liter;
+        phiController.text = articleData.phi;
       }else{
         if (kDebugMode) {
           print("No data found");
@@ -198,15 +194,15 @@ class _UpdateUserState extends State<UpdateDonation> {
     }
   }
 
-  Future<dynamic> updateDonation({
+  Future<dynamic> updateArticle({
     required String name,
     required String address,
     required String mobile,
     required String liter,
     required String phi,
   }) async{
-    final updatedDonation = WaterDonation(
-        id: singleDonation.id,
+    final updatedArticle = ArticleModel(
+        id: singleArticle.id,
         name: name,
         address: address,
         mobile: mobile,
@@ -214,11 +210,10 @@ class _UpdateUserState extends State<UpdateDonation> {
         phi: phi,
     );
 
-    final json = updatedDonation.toJson();
+    final json = updatedArticle.toJson();
 
     try{
-      await singleDonation.update(json);
-      showMessage('Donation Updated Successfully');
+      await singleArticle.update(json);
     }catch(err){
       if (kDebugMode) {
         print(err.toString());
@@ -226,9 +221,9 @@ class _UpdateUserState extends State<UpdateDonation> {
     }
   }
 
-  Future<dynamic> deleteUser() async{
+  Future<dynamic> deleteArticle() async{
     try{
-      await singleDonation.delete();
+      await singleArticle.delete();
     }catch(err){
       if (kDebugMode) {
         print(err.toString());

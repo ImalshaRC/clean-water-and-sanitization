@@ -7,17 +7,17 @@ import '../../../../models/SingleUser.dart';
 import '../checkout.dart';
 
 
-class ProductOne extends StatefulWidget {
-  const ProductOne({Key? key}) : super(key: key);
+class ProductFour extends StatefulWidget {
+  const ProductFour({Key? key}) : super(key: key);
 
   @override
-  State<ProductOne> createState() => _ProductOneState();
+  State<ProductFour> createState() => _ProductFourstate();
 
 
 
 }
 
-class _ProductOneState extends State<ProductOne> {
+class _ProductFourstate extends State<ProductFour> {
 
   late SingleUser singleUser;
   late DocumentReference<Map<String, dynamic>> oneUser;
@@ -45,7 +45,7 @@ class _ProductOneState extends State<ProductOne> {
   void changeScreen(singleUser) {
 
     Navigator.of(context).push(MaterialPageRoute(builder: (_){
-      return Checkout(singleUser,price:585,name:'Komarika Hand Sanitizer',qty: qty);
+      return Checkout(singleUser,price:340,name:'Safeguard Citrus Sanitizer',qty: qty);
     }));
   }
 
@@ -69,7 +69,7 @@ class _ProductOneState extends State<ProductOne> {
         appBar: AppBar(
           backgroundColor: Colors.cyan,
           elevation: 0.0,
-          title: const Text('Komarika Hand Sanitizer'),
+          title: const Text('Safeguard Citrus Sanitizer'),
         ),
         body:SingleChildScrollView(
           child: Column(
@@ -85,13 +85,13 @@ class _ProductOneState extends State<ProductOne> {
                       elevation: 5,
                       margin: EdgeInsets.all(10),
                       child: Image.asset(
-                        'assets/hs.webp',
+                        'assets/hs3.webp',
                         fit: BoxFit.contain,
                       ),
                     ),
                   ),
                   const Padding(padding:EdgeInsets.fromLTRB(0.0,20.0,0.0,00.0),
-                    child: Text('Komarika Hand Sanitizer',
+                    child: Text('Safeguard Citrus Sanitizer',
                       style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold),
                     ),
                   ),

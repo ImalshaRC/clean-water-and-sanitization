@@ -1,17 +1,16 @@
-import 'package:clear_water_and_sanitization/models/WaterDonation.dart';
-import 'package:clear_water_and_sanitization/screens/DonationHandling/DonationList.dart';
-import 'package:clear_water_and_sanitization/screens/DonationHandling/FeedbackList.dart';
+import 'package:clear_water_and_sanitization/models/ArticleModel.dart';
+import 'package:clear_water_and_sanitization/screens/Awareness/ArticlesFeed.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class AddDonation extends StatefulWidget {
-  const AddDonation({Key? key}) : super(key: key);
+class AddArticle extends StatefulWidget {
+  const AddArticle({Key? key}) : super(key: key);
 
   @override
-  State<AddDonation> createState() => _CrudAppState();
+  State<AddArticle> createState() => _CrudAppState();
 }
 
-class _CrudAppState extends State<AddDonation> {
+class _CrudAppState extends State<AddArticle> {
 
   final nameController = TextEditingController();
   final addressController = TextEditingController();
@@ -24,18 +23,16 @@ class _CrudAppState extends State<AddDonation> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.cyan,
-        title: const Text("Add donation"),
+        title: const Text("Add Article"),
       ),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children:  <Widget> [
-          const Center(child: Text('Add Donation', style: TextStyle(fontSize: 28, color: Colors.blueAccent),)),
           const SizedBox(height: 40),
           TextField(
             controller: nameController,
             decoration: InputDecoration(
-              hintText: 'Enter Name',
+              hintText: 'Name',
               labelText: 'Enter Name',
               border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(textBorder))),
 
@@ -45,7 +42,7 @@ class _CrudAppState extends State<AddDonation> {
           TextField(
             controller: addressController,
             decoration: InputDecoration(
-              hintText: 'Enter Home Address',
+              hintText: 'Age',
               labelText: 'Enter Home Address',
               border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(textBorder))),
             ),
@@ -54,7 +51,7 @@ class _CrudAppState extends State<AddDonation> {
           TextField(
             controller: mobileController,
             decoration: InputDecoration(
-              hintText: 'Enter Mobile Number',
+              hintText: 'Birth Date',
               labelText: 'Enter Mobile Number',
               border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(textBorder))),
             ),
@@ -64,7 +61,7 @@ class _CrudAppState extends State<AddDonation> {
           TextField(
             controller: literController,
             decoration: InputDecoration(
-              hintText: 'Enter Number of Liters(L)',
+              hintText: 'Birth Date',
               labelText: 'Enter Number of Liters(L)',
               border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(textBorder))),
             ),
@@ -74,16 +71,16 @@ class _CrudAppState extends State<AddDonation> {
           TextField(
             controller: phiController,
             decoration: InputDecoration(
-              hintText: 'Enter PHI Officer Mobile Number',
+              hintText: 'Birth Date',
               labelText: 'Enter PHI Officer Mobile Number',
               border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(textBorder))),
             ),
             keyboardType: TextInputType.number,
           ),
-          const SizedBox(height: 60),
+          const SizedBox(height: 24),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                primary: Colors.cyan,
+                primary: Colors.blueAccent,
                 onPrimary: Colors.white,
                 shadowColor: Colors.blueAccent,
                 elevation: 3,
@@ -92,6 +89,9 @@ class _CrudAppState extends State<AddDonation> {
                 minimumSize: const Size(50, 50),
               ),
               onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(builder: (_){
+                  return const ArticlesFeed();
+                }));
                 createDonation(
                   name: nameController.text,
                   address: addressController.text,
@@ -100,23 +100,11 @@ class _CrudAppState extends State<AddDonation> {
                   phi: phiController.text,
                 );
               },
-              child: const Text('Add Donation', style: TextStyle(fontSize: 18)),
+              child: const Text('Add Article', style: TextStyle(fontSize: 18)),
           )
         ],
       ),
     );
-  }
-
-  showMessage(message) {
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: Text(message),
-    ));
-  }
-
-  goToPage(){
-    Navigator.of(context).push(MaterialPageRoute(builder: (_){
-      return const DonationList();
-    }));
   }
 
   Future<dynamic> createDonation({
@@ -126,42 +114,20 @@ class _CrudAppState extends State<AddDonation> {
     required String liter,
     required String phi
   }) async{
-    String pattern = r'(^(?:[+0]9)?[0-9]{10,12}$)';
-    RegExp regExp = RegExp(pattern);
+    final docArticle = FirebaseFirestore.instance.collection('article').doc();
 
-    String pattern2 = r'\d';
-    RegExp regExp2 = RegExp(pattern2);
+    final article = ArticleModel(
+        id: docArticle.id,
+        name: name,
+        address: address,
+        mobile: mobile,
+        liter: liter,
+        phi: phi
+    );
 
-    if(name == '' || address == '' || mobile == '' || liter == '' || phi == ''){
+    final json = article.toJson();
 
-      showMessage('Please fill Out Required Fields');
-
-    }if(!regExp.hasMatch(mobile)){
-      showMessage('Please enter valid mobile number');
-    }if(!regExp2.hasMatch(liter)){
-      showMessage('Please enter valid Liter');
-    }if(!regExp.hasMatch(phi)){
-      showMessage('Please enter valid PHI mobile number');
-    }else{
-      final docWaterDonation = FirebaseFirestore.instance.collection('waterDonation').doc();
-
-      final waterDonate = WaterDonation(
-          id: docWaterDonation.id,
-          name: name,
-          address: address,
-          mobile: mobile,
-          liter: liter,
-          phi: phi
-      );
-
-      final json = waterDonate.toJson();
-
-      await docWaterDonation.set(json);
-
-      showMessage('Donation Added Successfully');
-
-      goToPage();
-    }
+    await docArticle.set(json);
   }
 }
 

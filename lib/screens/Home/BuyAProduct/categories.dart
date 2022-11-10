@@ -1,6 +1,8 @@
 import 'package:clear_water_and_sanitization/screens/Home/BuyAProduct/handsanitizers.dart';
 import 'package:flutter/material.dart';
 
+import '../home.dart';
+
 class Categories extends StatelessWidget {
   const Categories({Key? key}) : super(key: key);
 
@@ -12,6 +14,16 @@ class Categories extends StatelessWidget {
           backgroundColor: Colors.cyan,
           elevation: 0.0,
           title: const Text('Categories'),
+          actions: [
+            IconButton(
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(builder: (_){
+                  return const Home();
+                }));
+              },
+              icon: const Icon(Icons.home),
+            ),
+          ],
         ),
       body: SingleChildScrollView(
           child: Padding(
@@ -39,7 +51,7 @@ class Categories extends StatelessWidget {
                     margin: const EdgeInsets.only(bottom: 30.0),
                     child: ElevatedButton(
                       onPressed: (){
-
+                        Navigator.push(context, MaterialPageRoute(builder: (_)=> HandSanitizer()));
                       },
                       child: const Text('Hand Wash'),
                       style: ElevatedButton.styleFrom(
@@ -54,7 +66,9 @@ class Categories extends StatelessWidget {
                   Container(
                     margin: const EdgeInsets.only(bottom: 30.0),
                     child: ElevatedButton(
-                      onPressed: (){},
+                      onPressed: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (_)=> HandSanitizer()));
+                      },
                       child: const Text('Shampoo'),
                       style: ElevatedButton.styleFrom(
                           minimumSize: Size(300, 100),
@@ -68,7 +82,9 @@ class Categories extends StatelessWidget {
                   Container(
                     margin: const EdgeInsets.only(bottom: 30.0),
                     child: ElevatedButton(
-                      onPressed: (){},
+                      onPressed: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (_)=> HandSanitizer()));
+                      },
                       child: const Text('Brush'),
                       style: ElevatedButton.styleFrom(
                           minimumSize: Size(300, 100),
@@ -82,7 +98,9 @@ class Categories extends StatelessWidget {
                   Container(
                     margin: const EdgeInsets.only(bottom: 30.0),
                     child: ElevatedButton(
-                      onPressed: (){},
+                      onPressed: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (_)=> HandSanitizer()));
+                      },
                       child: const Text('ToothPaste'),
                       style: ElevatedButton.styleFrom(
                           minimumSize: Size(300, 100),
@@ -96,7 +114,9 @@ class Categories extends StatelessWidget {
                   Container(
                     margin: const EdgeInsets.only(bottom: 30.0),
                     child: ElevatedButton(
-                      onPressed: (){},
+                      onPressed: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (_)=> HandSanitizer()));
+                      },
                       style: ElevatedButton.styleFrom(
                           minimumSize: Size(300, 100),
                           primary: Colors.cyan,
@@ -110,7 +130,9 @@ class Categories extends StatelessWidget {
                   Container(
                     margin: const EdgeInsets.only(bottom: 30.0),
                     child: ElevatedButton(
-                      onPressed: (){},
+                      onPressed: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (_)=> HandSanitizer()));
+                      },
                       style: ElevatedButton.styleFrom(
                           minimumSize: Size(300, 100),
                           primary: Colors.cyan,
@@ -124,7 +146,9 @@ class Categories extends StatelessWidget {
                   Container(
                     margin: const EdgeInsets.only(bottom: 30.0),
                     child: ElevatedButton(
-                      onPressed: (){},
+                      onPressed: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (_)=> HandSanitizer()));
+                      },
                       style: ElevatedButton.styleFrom(
                           minimumSize: Size(300, 100),
                           primary: Colors.cyan,
