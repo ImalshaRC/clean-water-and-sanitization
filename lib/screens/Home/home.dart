@@ -66,7 +66,7 @@ class _HomeState extends State<Home> {
         ),
         drawer: Drawer(
       child: ListView(
-          padding: EdgeInsets.fromLTRB(0.0, 30.0, 0.0, 0.0),
+          padding: EdgeInsets.fromLTRB(0.0, 100.0, 0.0, 0.0),
           children:  [
             // DrawerHeader(
             //     decoration: const BoxDecoration(
@@ -84,69 +84,69 @@ class _HomeState extends State<Home> {
             //     ))
             // ),
             ListTile(
-              title:  const Text('Profile'),
+              title:  const Text('Profile',style: TextStyle(fontSize: 20),),
               onTap: (){
                 Navigator.pop(context);
                 // Navigator.push(context, MaterialPageRoute(builder: (_)=> const Profile()));
               },
             ),
             ListTile(
-              title:  const Text('Donation Main Menu'),
+              title:  const Text('Donation Main Menu',style: TextStyle(fontSize: 20),),
               onTap: (){
                 Navigator.push(context, MaterialPageRoute(builder: (_)=> const MainPage()));
                 // Navigator.push(context, MaterialPageRoute(builder: (_)=> const Profile()));
               },
             ),
             ListTile(
-              title:  const Text('Add Donation'),
+              title:  const Text('Add Donation',style: TextStyle(fontSize: 20),),
               onTap: (){
                 Navigator.push(context, MaterialPageRoute(builder: (_)=> const AddDonation()));
                 // Navigator.push(context, MaterialPageRoute(builder: (_)=> const Profile()));
               },
             ),
             ListTile(
-              title:  const Text('All Donations'),
+              title:  const Text('All Donations',style: TextStyle(fontSize: 20),),
               onTap: (){
                 Navigator.push(context, MaterialPageRoute(builder: (_)=> const DonationList()));
                 // Navigator.push(context, MaterialPageRoute(builder: (_)=> const Profile()));
               },
             ),
             ListTile(
-              title:  const Text('Donation Feedback'),
+              title:  const Text('Donation Feedback',style: TextStyle(fontSize: 20),),
               onTap: (){
                 Navigator.push(context, MaterialPageRoute(builder: (_)=> const FeedbackList()));
                 // Navigator.push(context, MaterialPageRoute(builder: (_)=> const Profile()));
               },
             ),
             ListTile(
-              title:  const Text('Donation Pie Chart'),
+              title:  const Text('Donation Pie Chart',style: TextStyle(fontSize: 20),),
               onTap: (){
                 Navigator.push(context, MaterialPageRoute(builder: (_)=> const DonationChart()));
                 // Navigator.push(context, MaterialPageRoute(builder: (_)=> const Profile()));
               },
             ),
             ListTile(
-              title:  const Text('Buy A Product'),
+              title:  const Text('Buy A Product',style: TextStyle(fontSize: 20),),
               onTap: (){
                 Navigator.pop(context);
                 Navigator.push(context, MaterialPageRoute(builder: (_)=> const Categories()));
               },
             ),
             ListTile(
-              title:  const Text('Orders'),
+              title:  const Text('Orders',style: TextStyle(fontSize: 20),),
               onTap: (){
                 Navigator.pop(context);
                 Navigator.push(context, MaterialPageRoute(builder: (_)=> const OrderList()));
               },
             ),
             ListTile(
-              title:  const Text('Exit'),
+              title:  const Text('Exit',style: TextStyle(fontSize: 20),),
               onTap: (){
                 // Navigator.pop(context);
               },
             ),
             ListTile(
-              title:  const Text('Logout'),
+              title:  const Text('Logout',style: TextStyle(fontSize: 20,color: Colors.red),),
               onTap: () async {
                 dynamic result = await _auth.signOut();
                 print(result);
@@ -164,63 +164,11 @@ class _HomeState extends State<Home> {
           ]
       ),
     ),
-        body: Column(
-          children: <Widget>[
-            Padding(
-              padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
-              child: Column(
-                children: [
-                  Center(
-                    child: ElevatedButton(
-                      onPressed: () async {
-                        dynamic result = await _auth.signOut();
-                        print(result);
-                        if(result=='Success'){
-                          ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text('Successfully Signed Out'),
-                              ));
-                          Navigator.push(context, MaterialPageRoute(builder: (_)=> const EmailSignin()));
-                        }else{
-                          ScaffoldMessenger.of(context).showSnackBar(
-                              new SnackBar(content: new Text(result),
-                              ));
-                        }
-
-
-                      },
-                      child: const Text('Sign Out'),
-                    ),
-                  )
-                ],
-              )
-            ),
-            ElevatedButton(
-                onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (_)=> const MainPage()));
-                },
-                child: const Text('Donation handling'),
-            ),
-
-            ElevatedButton(
-              onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (_)=> const AddArticle()));
-              },
-              child: const Text('articles'),
-            ),
-            ElevatedButton(
-              onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (_)=> const ArticleList()));
-              },
-              child: const Text('articles list'),
-            ),
-            ElevatedButton(
-              onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (_)=> const ArticlesFeedback()));
-              },
-              child: const Text('articles feedback'),
-            )
-          ],
-        )
+        body:  Image.asset('assets/uee.jpeg',
+          fit: BoxFit.cover,
+          height: double.infinity,
+          width: double.infinity,
+          alignment: Alignment.center,),
     );
   }
 }
