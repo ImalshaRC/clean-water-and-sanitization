@@ -1,4 +1,5 @@
 import 'package:clear_water_and_sanitization/models/Order.dart';
+import 'package:clear_water_and_sanitization/screens/Home/BuyAProduct/orderlist.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
@@ -133,7 +134,7 @@ class _CheckoutState extends State<Checkout> {
                     ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(content: Text('Successfully Created Order'),
                         ));
-                    Navigator.push(context, MaterialPageRoute(builder: (_)=> const Home()));
+                    Navigator.push(context, MaterialPageRoute(builder: (_)=> const OrderList()));
 
                 },
                 style: ElevatedButton.styleFrom(

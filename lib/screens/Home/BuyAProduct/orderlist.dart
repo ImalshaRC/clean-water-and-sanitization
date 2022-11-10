@@ -1,5 +1,6 @@
 import 'package:clear_water_and_sanitization/models/Order.dart';
 import 'package:clear_water_and_sanitization/screens/Home/BuyAProduct/categories.dart';
+import 'package:clear_water_and_sanitization/screens/Home/BuyAProduct/trackorder.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -69,7 +70,7 @@ class _OrderListState extends State<OrderList> {
         const SizedBox(height: 10),
         ListTile(
           shape: RoundedRectangleBorder(borderRadius: borderRadius),
-          selectedTileColor: Colors.grey,
+          selectedTileColor: Colors.blueAccent,
           selected: true,
           title: Column(
             children: [
@@ -82,7 +83,7 @@ class _OrderListState extends State<OrderList> {
                   ),
                   const Spacer(),
                   Text(
-                      order.qty,
+                      order.state,
                       style: const TextStyle(color: Colors.white, fontSize: ft)
                   ),
                 ],
@@ -91,7 +92,7 @@ class _OrderListState extends State<OrderList> {
               Row(
                 children: [
                   Text(
-                      'Total Price: ${order.totalPrice}',
+                      'Total Price: Rs.${order.totalPrice}.00',
                       style: const TextStyle(color: Colors.white, fontSize: ft)
                   ),
                 ],
@@ -99,20 +100,6 @@ class _OrderListState extends State<OrderList> {
               const SizedBox(height: 7),
               Row(
                 children: [
-                  ElevatedButton(
-                      onPressed: (){
-                        Navigator.of(context).push(MaterialPageRoute(builder: (_) {
-                          return UpdateDonation(order.id);
-                        }));
-                      },
-                      style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0)
-                          ),
-                          backgroundColor: Colors.green
-                      ),
-                      child: const Text("Update")
-                  ),
                   const Spacer(),
                   ElevatedButton(
                       onPressed: (){
@@ -125,7 +112,7 @@ class _OrderListState extends State<OrderList> {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10.0)
                           ),
-                          backgroundColor: Colors.green
+                          backgroundColor: Colors.red
                       ),
                       child: const Text("Delete")
                   ),
@@ -135,7 +122,7 @@ class _OrderListState extends State<OrderList> {
           ),
           onTap: () {
             Navigator.of(context).push(MaterialPageRoute(builder: (_) {
-              return UpdateDonation(order.id);
+              return TrackOrder(order.id);
             }));
           },
         )
