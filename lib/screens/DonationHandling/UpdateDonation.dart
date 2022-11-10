@@ -35,6 +35,7 @@ class _UpdateUserState extends State<UpdateDonation> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.cyan,
         title:  const Text("Update Donation"),
         actions: [
           IconButton(
@@ -100,7 +101,7 @@ class _UpdateUserState extends State<UpdateDonation> {
           const SizedBox(height: 24),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
-              primary: Colors.blueAccent,
+              primary: Colors.cyan,
               onPrimary: Colors.white,
               shadowColor: Colors.blueAccent,
               elevation: 3,

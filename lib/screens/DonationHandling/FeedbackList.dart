@@ -20,6 +20,7 @@ class _UserListState extends State<FeedbackList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.cyan,
         title: const Text("Donation Feedback List"),
         actions: [
           IconButton(

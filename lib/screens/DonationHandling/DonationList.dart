@@ -17,6 +17,7 @@ class _UserListState extends State<DonationList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.cyan,
         title: const Text("Water Donation List"),
         actions: [
           IconButton(
@@ -87,7 +88,7 @@ class _UserListState extends State<DonationList> {
               Row(
                 children: [
                   Text(
-                    'Date: ${donation.name}',
+                    '${donation.liter} Liters',
                     style: const TextStyle(color: Colors.white, fontSize: ft)
                   ),
                 ],
@@ -105,7 +106,7 @@ class _UserListState extends State<DonationList> {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10.0)
                         ),
-                        backgroundColor: Colors.green
+                        backgroundColor: Colors.cyan
                       ),
                       child: const Text("Update")
                   ),
@@ -121,7 +122,7 @@ class _UserListState extends State<DonationList> {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10.0)
                         ),
-                        backgroundColor: Colors.green
+                        backgroundColor: Colors.red
                       ),
                       child: const Text("Delete")
                   ),
@@ -144,12 +145,18 @@ class _UserListState extends State<DonationList> {
       title: const Text("Do you want to delete?"),
       actions: [
         ElevatedButton(
+            style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.cyan
+            ),
             onPressed: (){
               Navigator.pop(context);
             },
             child: const Text("No")
         ),
         ElevatedButton(
+            style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.red
+            ),
             onPressed: (){
               deleteUser(id);
               Navigator.of(context).push(MaterialPageRoute(builder: (_){

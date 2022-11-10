@@ -1,6 +1,9 @@
 import 'package:clear_water_and_sanitization/screens/Awareness/AddArticles.dart';
 import 'package:clear_water_and_sanitization/screens/Awareness/ArticlesFeedback.dart';
 import 'package:clear_water_and_sanitization/screens/Awareness/ArticlesList.dart';
+import 'package:clear_water_and_sanitization/screens/DonationHandling/AddDonation.dart';
+import 'package:clear_water_and_sanitization/screens/DonationHandling/DonationList.dart';
+import 'package:clear_water_and_sanitization/screens/DonationHandling/FeedbackList.dart';
 import 'package:clear_water_and_sanitization/screens/DonationHandling/MainPage.dart';
 import 'package:clear_water_and_sanitization/screens/Home/BuyAProduct/categories.dart';
 import 'package:flutter/material.dart';
@@ -60,6 +63,27 @@ class _HomeState extends State<Home> {
               title:  const Text('Profile'),
               onTap: (){
                 Navigator.pop(context);
+                // Navigator.push(context, MaterialPageRoute(builder: (_)=> const Profile()));
+              },
+            ),
+            ListTile(
+              title:  const Text('Add Donation'),
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (_)=> const AddDonation()));
+                // Navigator.push(context, MaterialPageRoute(builder: (_)=> const Profile()));
+              },
+            ),
+            ListTile(
+              title:  const Text('All Donations'),
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (_)=> const DonationList()));
+                // Navigator.push(context, MaterialPageRoute(builder: (_)=> const Profile()));
+              },
+            ),
+            ListTile(
+              title:  const Text('Donation Feedback'),
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (_)=> const FeedbackList()));
                 // Navigator.push(context, MaterialPageRoute(builder: (_)=> const Profile()));
               },
             ),
