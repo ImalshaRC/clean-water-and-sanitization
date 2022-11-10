@@ -1,5 +1,4 @@
 import 'package:clear_water_and_sanitization/models/Order.dart';
-import 'package:clear_water_and_sanitization/services/order.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
@@ -25,7 +24,6 @@ class Checkout extends StatefulWidget {
 
 class _CheckoutState extends State<Checkout> {
 
-  final OrderService _order = OrderService();
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   final nameControl = TextEditingController();
@@ -39,6 +37,8 @@ class _CheckoutState extends State<Checkout> {
     '${widget.singleUser.firstName} ${widget.singleUser.lastName}';
     addressControl.text = widget.singleUser.address;
     phoneControl.text = widget.singleUser.phoneNo;
+
+    final userId =  _auth.currentUser?.uid;
 
     int? quantity = int.tryParse(widget.qty);
     String qty3 = quantity.toString();
@@ -119,9 +119,7 @@ class _CheckoutState extends State<Checkout> {
               child: ElevatedButton(
                 onPressed: () async {
 
-                  final userId =  _auth.currentUser?.uid;
-
-                  dynamic result = _order.createOrder(
+                  dynamic result = createOrder(
                       name: '${widget.singleUser.firstName} ${widget.singleUser
                           .lastName}',
                       address: widget.singleUser.address,
@@ -129,7 +127,7 @@ class _CheckoutState extends State<Checkout> {
                       productName: widget.name.toString(),
                       qty: qty3,
                       totalPrice: totalPrice,
-                      state: 'Processing',userId!);
+                      state: 'Processing');
 
                     print('Successfully Created Order');
                     ScaffoldMessenger.of(context).showSnackBar(
@@ -149,5 +147,35 @@ class _CheckoutState extends State<Checkout> {
         )
     );
   }
+}
+
+Future<dynamic> createOrder({
+  required String name,
+  required String address,
+  required String mobile,
+  required String productName,
+  required String qty,
+  required String totalPrice,
+  required String state,
+}) async{
+  final docOrder = await FirebaseFirestore.instance.collection('orders').doc();
+
+  print(docOrder.id);
+
+  final order = Orders(
+      id: docOrder.id,
+      name: name,
+      address: address,
+      mobile: mobile,
+      productName: productName,
+      qty: qty,
+      totalPrice: totalPrice,
+      state: state,
+      // uid: userId
+  );
+  final json = order.toJson();
+
+  await docOrder.set(json);
+
 }
 

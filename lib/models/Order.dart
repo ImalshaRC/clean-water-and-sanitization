@@ -1,5 +1,6 @@
 class Orders {
   String id = '';
+  // String uid = '';
   final String name;
   final String address;
   final String mobile;
@@ -9,18 +10,20 @@ class Orders {
   final String state;
 
   Orders({
-    required this.id,
     required this.name,
     required this.address,
     required this.mobile,
     required this.productName,
     required this.qty,
     required this.totalPrice,
-    required this.state
+    required this.state,
+    required this.id,
+    // required this.uid
   });
 
   Map<String, dynamic> toJson() => {
-    'id': id,
+    'id':id,
+    // 'uid': uid,
     'name': name,
     'address': address,
     'mobile': mobile,
@@ -32,6 +35,7 @@ class Orders {
 
   static Orders fromJson(Map<String, dynamic> json) => Orders(
       id: json['id'],
+      // uid: json['uid'],
       name: json['name'],
       address: json['address'],
       mobile: json['mobile'],
