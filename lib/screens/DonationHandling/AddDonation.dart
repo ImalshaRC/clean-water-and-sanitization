@@ -77,7 +77,8 @@ class _CrudAppState extends State<AddDonation> {
             keyboardType: TextInputType.number,
           ),
           const SizedBox(height: 24),
-              ElevatedButton(style: ElevatedButton.styleFrom(
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
                 primary: Colors.blueAccent,
                 onPrimary: Colors.white,
                 shadowColor: Colors.blueAccent,
@@ -96,7 +97,7 @@ class _CrudAppState extends State<AddDonation> {
                   phi: phiController.text,
                 );
               },
-              child: const Text('Create User', style: TextStyle(fontSize: 18)),
+              child: const Text('Add Donation', style: TextStyle(fontSize: 18)),
           )
         ],
       ),

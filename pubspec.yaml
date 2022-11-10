@@ -36,6 +36,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   firebase_auth: ^4.0.2
   getwidget: ^2.0.4
+  flutter_rating_bar: ^4.0.1
+  fluttertoast: ^8.1.1
 
 dev_dependencies:
   flutter_test:
@@ -68,6 +70,11 @@ flutter:
     - assets/hs2.webp
     - assets/hs3.webp
     - assets/donation1.png
+<<<<<<< HEAD
+    - assets/rateus.png
+
+=======
+>>>>>>> 02ae73a500c01457e2ea6b75398c642a45850554
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

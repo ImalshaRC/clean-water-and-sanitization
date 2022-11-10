@@ -1,5 +1,7 @@
 import 'package:clear_water_and_sanitization/screens/DonationHandling/AddDonation.dart';
+import 'package:clear_water_and_sanitization/screens/DonationHandling/DonationFeedback.dart';
 import 'package:clear_water_and_sanitization/screens/DonationHandling/DonationList.dart';
+import 'package:clear_water_and_sanitization/screens/DonationHandling/FeedbackList.dart';
 import 'package:flutter/material.dart';
 
 class MainPage extends StatelessWidget {
@@ -61,7 +63,7 @@ class MainPage extends StatelessWidget {
                 minimumSize: const Size(100, 60),
               ),
               onPressed: (){
-
+                Navigator.push(context, MaterialPageRoute(builder: (_)=> const FeedbackList()));
               },
               child: const Text('Feedbacks', style: TextStyle(fontSize: 24))
           )
